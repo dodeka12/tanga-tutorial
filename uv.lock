@@ -849,15 +849,15 @@ wheels = [
 
 [[package]]
 name = "jupyter-builder"
-version = "1.2.0"
+version = "1.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jupyter-core" },
     { name = "traitlets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9c/76/4696d0d0b6903e96ba4f959427c7aad985015dd2726e643eadee2a1eec72/jupyter_builder-1.2.0.tar.gz", hash = "sha256:e62ed4a7e224c73197dd76974754c93070c9f0451ca450a2c81126838b00f866", size = 976342, upload-time = "2026-07-30T07:42:01.151Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3e/f2/b5545d15ebb1611893f3b72cf4cb648479356560620884c529bef1205550/jupyter_builder-1.2.1.tar.gz", hash = "sha256:05772287000a550b6e363812a6f5a197865e758d61833464225e9cfaf5966b56", size = 977454, upload-time = "2026-07-31T16:16:40.293Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4b/05/a0ac568fa8dfff7c697545956990f7aa222f59d6ec50f21a91170e24a69b/jupyter_builder-1.2.0-py3-none-any.whl", hash = "sha256:c8a003714a118ebb590f79b459e1e384dee7dce9aebaa86ace045f5960997fe4", size = 914544, upload-time = "2026-07-30T07:41:59.053Z" },
+    { url = "https://files.pythonhosted.org/packages/ff/bb/f36a244e712e70eb9e5d979e1d5f8c53b265ca97afc2c8bc82c67a0630ce/jupyter_builder-1.2.1-py3-none-any.whl", hash = "sha256:813160d7e3a5ebfce6dabb76a7799774eb562671462223ef160d1aa42abdacd3", size = 915110, upload-time = "2026-07-31T16:16:38.308Z" },
 ]
 
 [[package]]
@@ -1052,6 +1052,18 @@ wheels = [
 ]
 
 [[package]]
+name = "markdown-it-py"
+version = "4.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mdurl" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/06/ff/7841249c247aa650a76b9ee4bbaeae59370dc8bfd2f6c01f3630c35eb134/markdown_it_py-4.2.0.tar.gz", hash = "sha256:04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49", size = 82454, upload-time = "2026-05-07T12:08:28.36Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b3/81/4da04ced5a082363ecfa159c010d200ecbd959ae410c10c0264a38cac0f5/markdown_it_py-4.2.0-py3-none-any.whl", hash = "sha256:9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a", size = 91687, upload-time = "2026-05-07T12:08:27.182Z" },
+]
+
+[[package]]
 name = "markupsafe"
 version = "3.0.3"
 source = { registry = "https://pypi.org/simple" }
@@ -1124,6 +1136,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/bd/c0/9f7c9a46090390368a4d7bcb76bb87a4a36c421e4c0792cdb53486ffac7a/matplotlib_inline-0.2.2.tar.gz", hash = "sha256:72f3fe8fce36b70d4a5b612f899090cd0401deddc4ea90e1572b9f4bfb058c79", size = 8150, upload-time = "2026-05-08T17:33:33.49Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/41/09/5b161152e2d90f7b87f781c2e1267494aef9c32498df793f73ad0a0a494a/matplotlib_inline-0.2.2-py3-none-any.whl", hash = "sha256:3c821cf1c209f59fb2d2d64abbf5b23b67bcb2210d663f9918dd851c6da1fcf6", size = 9534, upload-time = "2026-05-08T17:33:32.055Z" },
+]
+
+[[package]]
+name = "mdurl"
+version = "0.1.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d6/54/cfe61301667036ec958cb99bd3efefba235e65cdeb9c84d24a8293ba1d90/mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba", size = 8729, upload-time = "2022-08-14T12:40:10.846Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8", size = 9979, upload-time = "2022-08-14T12:40:09.779Z" },
 ]
 
 [[package]]
@@ -1831,6 +1852,19 @@ wheels = [
 ]
 
 [[package]]
+name = "rich"
+version = "15.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "markdown-it-py" },
+    { name = "pygments" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c0/8f/0722ca900cc807c13a6a0c696dacf35430f72e0ec571c4275d2371fca3e9/rich-15.0.0.tar.gz", hash = "sha256:edd07a4824c6b40189fb7ac9bc4c52536e9780fbbfbddf6f1e2502c31b068c36", size = 230680, upload-time = "2026-04-12T08:24:00.75Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/82/3b/64d4899d73f91ba49a8c18a8ff3f0ea8f1c1d75481760df8c68ef5235bf5/rich-15.0.0-py3-none-any.whl", hash = "sha256:33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb", size = 310654, upload-time = "2026-04-12T08:24:02.83Z" },
+]
+
+[[package]]
 name = "rpds-py"
 version = "2026.6.3"
 source = { registry = "https://pypi.org/simple" }
@@ -2020,10 +2054,16 @@ wheels = [
 
 [[package]]
 name = "tanga-py"
-source = { editable = "../tanga" }
+version = "0.2.4"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
     { name = "numpy" },
+    { name = "rich" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/04/ca/ea324010b91dd8edacd84abab1becd8ca639fc384e6d692ad64790009b5e/tanga_py-0.2.4-py3-none-any.whl", hash = "sha256:f4ad641db0df65d92123ccd3679d44410673782772b291cb4a2e729bb8281fb4", size = 542215, upload-time = "2026-08-02T15:46:45.283Z" },
+    { url = "https://files.pythonhosted.org/packages/a7/76/aa2f22780342e0b5840c7f6c2a80f321c29b92d055e6feadc486d5abaf2a/tanga_py-0.2.4-py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:db2a22f7a79605b2fe830a111e860bf3ea5df61e69a257d808e26f5386bf4c4b", size = 1635759, upload-time = "2026-08-02T15:46:46.429Z" },
 ]
 
 [package.optional-dependencies]
@@ -2037,29 +2077,6 @@ examples = [
     { name = "ipython" },
     { name = "jupyter" },
     { name = "scipy" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "aiohttp", specifier = ">=3.14.3" },
-    { name = "cmake", marker = "extra == 'compile'", specifier = ">=3.18" },
-    { name = "ipykernel", marker = "extra == 'examples'", specifier = ">=6.29" },
-    { name = "ipython", marker = "extra == 'examples'", specifier = ">=8.30" },
-    { name = "jupyter", marker = "extra == 'examples'", specifier = ">=1.0" },
-    { name = "ninja", marker = "extra == 'compile'" },
-    { name = "numpy", specifier = ">=2.5.1" },
-    { name = "pybind11", marker = "extra == 'compile'", specifier = ">=2.11" },
-    { name = "scipy", marker = "extra == 'examples'", specifier = ">=1.13" },
-]
-provides-extras = ["compile", "examples"]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "mkdocs-material", specifier = ">=9.7.7" },
-    { name = "pytest", specifier = ">=9.1.1" },
-    { name = "ruff", specifier = ">=0.14.0" },
-    { name = "tanga-py", extras = ["compile", "examples"] },
-    { name = "twine", specifier = ">=6.0" },
 ]
 
 [[package]]
@@ -2079,7 +2096,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "tanga-py", extras = ["compile", "examples"], editable = "../tanga" }]
+requires-dist = [{ name = "tanga-py", extras = ["compile", "examples"], specifier = ">=0.2.4" }]
 
 [package.metadata.requires-dev]
 dev = [

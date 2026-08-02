@@ -45,7 +45,7 @@ def main() -> None:
 
     # Duality: cross product via dual of outer product
     cross = (e1 ^ e2).dual()
-    print(f"★(e1 ^ e2) = {cross}")   # Should yield e3
+    print(f"(e1 ^ e2)★ = {cross}")   # Should yield e3
 
     # Grade extraction
     mv2 = e1 * e2 + 3  # scalar + bivector

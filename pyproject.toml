@@ -5,7 +5,7 @@ description = "Tutorials and examples for the TanGA geometric algebra library"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "tanga-py[compile,examples]",
+    "tanga-py[compile,examples]>=0.2.4",
 ]
 
 [dependency-groups]
@@ -16,5 +16,5 @@ dev = [
     "scipy>=1.13",
 ]
 
-[tool.uv.sources]
-tanga-py = { path = "../tanga", editable = true }
+# [tool.uv.sources]
+# tanga-py = { path = "../tanga", editable = true }
