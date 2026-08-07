@@ -10,7 +10,7 @@ explanatory material; scripts for runnable, self-contained demos.
 
 ---
 
-## Step 0 — Scaffold All Tutorial Folders
+## Step 0 — Scaffold All Tutorial Folders ✅ COMPLETE
 
 **Before implementing any tutorial content**, create the full directory scaffolding:
 
