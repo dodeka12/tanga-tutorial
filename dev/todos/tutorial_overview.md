@@ -8,6 +8,14 @@ Each tutorial lives in its own folder under `tutorials/`. The format (Jupyter no
 `.ipynb` or Python script `.py`) is noted per tutorial — notebooks for interactive,
 explanatory material; scripts for runnable, self-contained demos.
 
+> **Convention:** Throughout all tutorials, create algebras directly from the
+> corresponding basis class (e.g. `E3 = BasisE3()`, `PGA = BasisPGA3()`) rather than
+> the generic `Algebra.from_name()` factory. The basis classes are the recommended
+> entry point — they expose named blades as attributes and provide factory methods
+> like `vector()`, `rotor()`, etc. The generic `Algebra` class is introduced in
+> [Tutorial 3](#3-algebra-and-multivectors--the-core) and reserved for custom
+> algebras not covered by the four built-in basis classes.
+
 ---
 
 ## Step 0 — Scaffold All Tutorial Folders ✅ COMPLETE
