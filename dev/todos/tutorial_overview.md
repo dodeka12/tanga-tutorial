@@ -14,7 +14,21 @@ explanatory material; scripts for runnable, self-contained demos.
 > entry point — they expose named blades as attributes and provide factory methods
 > like `vector()`, `rotor()`, etc. The generic `Algebra` class is introduced in
 > [Tutorial 3](#3-algebra-and-multivectors--the-core) and reserved for custom
-> algebras not covered by the four built-in basis classes.
+> algebras not covered by the eight built-in basis classes.
+> 
+> The recommended pattern for the geometry analysis/creation pipeline is the
+> `Geometry` convenience class, introduced in [Tutorial 15](#15-geometry-submodule--algebra-independent-entities):
+> 
+> ```python
+> from pytanga.geometry import Geometry
+> 
+> geo = Geometry(BasisE3())  # binds algebra + default OPNS flag
+> result = geo.analyze(mv)   # MV → Entity/Operator
+> mv = geo.create(entity)     # Entity/Operator → MV
+> ```
+> 
+> The standalone `analyze()` / `create()` functions are documented as an
+> alternative when per-call algebra/OPNS overrides are needed.
 
 ---
 
@@ -53,12 +67,12 @@ Sections:
 - **Algebra & Multivectors** — Create an algebra, build multivectors from strings,
   compute the geometric product, extract grades. →
   [Tutorial 3](#3-algebra-and-multivectors--the-core)
-- **Basis Classes** — Use `BasisE3` for named blades and factory methods; glimpse
-  `BasisPGA3` for plane-based GA. → [Tutorial 4](#4-the-four-basis-classes)
+- **Basis Classes** — Use `BasisE3` and `BasisPGA3` for named blades and factory
+  methods; glimpse the 2D basis classes. → [Tutorial 4](#4-the-eight-basis-classes)
 - **Rotors & Motions** — Build a rotor, rotate a vector with the sandwich product. →
   [Tutorial 5](#5-euclidean-3d-g30--vectors-bivectors-rotors)
-- **Geometry Submodule** — Create a `Point`, `Line`, and `Sphere` with
-  `pytanga.geometry.create()`; round-trip with `analyze()`. →
+- **Geometry Submodule** — Create a `Point`, `Line`, and `Sphere` with the
+  `Geometry` convenience class; round-trip with `analyze()`. →
   [Tutorial 15](#15-geometry-submodule--algebra-independent-entities)
 - **Equation Solving** — Solve `A * X = B` for an unknown multivector with `solve()`. →
   [Tutorial 12](#12-equation-solving--from-ga-to-linear-systems)
@@ -98,23 +112,43 @@ reverse, involution, and inversion. Show grade extraction, blade iteration, and
 
 ---
 
-## 4. The Four Basis Classes
+## 4. The Eight Basis Classes
 
 **Format:** Jupyter notebook
 
-**Abstract:** Present the four pre-built `Algebra` subclasses that expose named basis
-blades as attributes: `BasisE3` (Euclidean 3D), `BasisP3` (Projective 3D), `BasisN3`
-(Null/Conformal 3D), and `BasisPGA3` (Plane-based Geometric Algebra 3D). For each,
-show the algebra signature, the named blade attributes, the `vector()` factory method,
-and a short geometric example. Compare the four algebras side by side — when to use
-which, and how their basis elements encode different geometric meanings. Include the
-three patterns for accessing named blades (explicit assignment, attribute access,
-namespace injection).
+**Abstract:** Present the eight pre-built `Algebra` subclasses that expose named basis
+blades as attributes. Four are for 3D geometry and four for 2D:
 
-**Visual Examples:** Use `pytanga.viz.Visualizer` to produce a standalone HTML figure
-comparing a common geometric object (e.g. a point and a line) across the four algebras,
-highlighting the different blade representations and signatures. Do not explain the
-Visualizer API in detail; reference the
+| 3D Classes | Description |
+|------------|-------------|
+| `BasisE3` | Euclidean 3D — G(3,0) |
+| `BasisP3` | Projective 3D — G(4,0) |
+| `BasisN3` | Null/Conformal 3D — G(5,0)⊕[B₁,0,0,0] |
+| `BasisPGA3` | Plane-based Geometric Algebra 3D |
+
+| 2D Classes | Description |
+|------------|-------------|
+| `BasisE2` | Euclidean 2D — G(2,0) |
+| `BasisP2` | Projective 2D — G(3,0) |
+| `BasisN2` | Null/Conformal 2D — G(4,0)⊕[B₁,0,0,0] |
+| `BasisPGA2` | Plane-based Geometric Algebra 2D |
+
+For each, show the algebra signature, the named blade attributes, the factory
+methods, and a short geometric example. Compare the algebras side by side — when
+to use which, how their basis elements encode different geometric meanings, and the
+entity/operator coverage matrix across all eight. Include the three patterns for
+accessing named blades (explicit assignment, attribute access, namespace injection).
+
+**Note:** The 2D classes (`BasisE2`/`P2`/`N2`/`PGA2`) work with the same geometry
+entity and operator types as 3D — the `z` component is simply always 0. In N2, a
+"sphere" is a circle (the conformal model uses 3 points to define a sphere, which
+in 2D results in a circle). E2 has no points — only directions and rotors.
+
+**Visual Examples:** Use `pytanga.viz.Visualizer` to produce standalone HTML figures
+comparing a common geometric object (e.g. a point and a line) across the four 3D
+algebras, and a second figure showing the 2D counterparts with
+`Visualizer(space_dim=2)`. Highlight the different blade representations and
+signatures. Do not explain the Visualizer API in detail; reference the
 [3D Visualization tutorial](#16-3d-visualization--interactive-scenes) for setup
 instructions. If side-by-side scenes are needed, use `display_row()`. Export figures as
 self-contained HTML via `SceneExporter`.
@@ -147,11 +181,14 @@ setup instructions. Export figures as self-contained HTML via `SceneExporter`.
 **Format:** Jupyter notebook
 
 **Abstract:** Deep dive into `BasisP3`. Introduce the homogeneous (projective)
-embedding where a fourth basis vector `e0` carries the origin. Show how points,
+embedding where a fourth basis vector `e4` carries the origin. Show how points,
 directions, lines, and planes are represented as blades. Demonstrate perspective
 projection, translation via projective rotors, and the relationship between
-projective and Euclidean entities. Highlight the geometry submodule's `analyze()`
-and `create()` as shortcuts for working with P3 entities.
+projective and Euclidean entities. Highlight the geometry submodule's `Geometry`
+class and the `analyze()`/`create()` pipeline as shortcuts for working with P3
+entities. Note that translation goes through `Geometry.create(Translator(...))`
+via the geometry pipeline, since `BasisP3` only exposes `point()` as a factory
+method (no built-in `rotor()` or `translator()`).
 
 **Visual Examples:** Produce standalone HTML figures via `pytanga.viz.Visualizer`
 showing a P3 point, a P3 line (as a bivector), and a plane in projective space. Use
@@ -172,9 +209,11 @@ between IPNS entities (as `analyze` output) and OPNS constructions. Introduce N3
 operators: rotors, translators, dilators, and the inversion operator.
 
 **Visual Examples:** Use `pytanga.viz.Visualizer` to produce standalone HTML figures
-of a sphere, a circle (as sphere–sphere intersection), a point pair, and the effect
-of applying a dilator (scaling) and a translator (displacement). Output self-contained
-HTML via `SceneExporter`. Do not explain the Visualizer API; reference the
+of a sphere, a circle (as sphere–sphere intersection), a point pair, an imaginary
+circle (`ImagCircle` — dotted wireframe, dual of a real point pair), an imaginary
+sphere (`ImagSphere`), and the effect of applying a dilator (scaling) and a
+translator (displacement). Output self-contained HTML via `SceneExporter`. Do not
+explain the Visualizer API; reference the
 [3D Visualization tutorial](#16-3d-visualization--interactive-scenes).
 
 ---
@@ -205,7 +244,7 @@ the [3D Visualization tutorial](#16-3d-visualization--interactive-scenes).
 **Abstract:** Cover the three dual/conjugate operations in pytanga: the unsigned
 bitwise complement (`~MV`), the signed Clifford dual (`MV.dual()`), and the left dual
 (`MV.ldual()`). Explain the mathematical meaning of each, when to use each one, and
-how they interact across the four basis algebras. Include practical use cases: mapping
+how they interact across the eight basis algebras. Include practical use cases: mapping
 between IPNS and OPNS, computing the regressive product via duality, and extracting
 normals/orthogonal complements.
 
@@ -289,35 +328,59 @@ per-element computation along a labelled axis.
 **Format:** Jupyter notebook
 
 **Abstract:** Cover the complete `pytanga.geometry` data model. Introduce entity types
-(`Point`, `Direction`, `Line`, `Plane`, `Circle`, `Sphere`, `PointPair`, `Space`) and
-operator types (`ReflectionPlane`, `ReflectionLine`, `ReflectionOrigin`, `Inversion`,
-`Rotor`, `Translator`, `Dilator`, `Motor`, `GeneralRotor`, `GeneralDilator`).
-Demonstrate the bidirectional pipeline: `analyze()` extracts geometric meaning from a
-multivector; `create()` constructs a multivector from a geometric description. Show
-round-trip examples proving consistency. Highlight algebra independence — the same
-`Point` object can be created in E3, P3, N3, or PGA3.
+(`Point`, `Direction`, `Line`, `Plane`, `Circle`, `Sphere`, `PointPair`, `Space`,
+`ImagCircle`, `ImagSphere`, `ImagPointPair`) and operator types (`ReflectionPlane`
+(alias `Reflection`), `ReflectionLine`, `ReflectionPoint`, `Inversion`, `Rotor`,
+`Translator`, `Dilator`, `Motor`, `GeneralRotor`). Show the entity/operator coverage
+matrices across all eight algebras (E3, P3, PGA3, N3, E2, P2, PGA2, N2). Present the
+`Geometry` convenience class as the recommended pattern — bind an algebra once and
+call `geo.analyze(mv)` / `geo.create(entity)` without repeating the algebra and OPNS
+flag on every call. Cover the standalone `analyze()` / `create()` / `analyze_entity()`
+/ `analyze_operator()` / `create_entity()` / `create_operator()` functions as an
+alternative when per-call overrides are needed. Demonstrate the bidirectional
+pipeline: `analyze()` extracts geometric meaning from a multivector; `create()`
+constructs a multivector from a geometric description. Show round-trip examples
+proving consistency across all eight algebras. Highlight algebra independence — the
+same `Point` object can be created in E3, P3, N3, PGA3, or their 2D counterparts.
+
+**Note on `HPoint`:** The homogenized point type `HPoint` is used internally by the
+visualizer and `PointPath` for trails and FIFO-capped paths. It appears in
+`viz.add()` targets and `PointPath` construction but is not a first-class geometry
+entity (it has no `create()`/`analyze()` support). It is covered in
+[Tutorial 18](#18-visualization--animation-and-interactivity) when discussing
+`PointPath`.
 
 **Visual Examples:** Use `pytanga.viz.Visualizer` to produce standalone HTML figures
-of each entity type created via `create()` and fed to the Visualizer. Show round-trip
-validation: create an MV from a geometry entity, re-analyze it, and verify the
-resulting entity matches the original — all visually confirmed in 3D. Export
-self-contained HTML via `SceneExporter`. Do not explain the Visualizer API; reference
-the [3D Visualization tutorial](#16-3d-visualization--interactive-scenes).
+of each entity type created via `geo.create()` and fed to the Visualizer. Show
+round-trip validation: create an MV from a geometry entity, re-analyze it with
+`geo.analyze()`, and verify the resulting entity matches the original — all visually
+confirmed in 3D. Export self-contained HTML via `SceneExporter`. Do not explain the
+Visualizer API; reference the
+[3D Visualization tutorial](#16-3d-visualization--interactive-scenes).
 
 ---
 
-## 16. 3D Visualization — Interactive Scenes
+## 16. 3D & 2D Visualization — Interactive Scenes
 
 **Format:** Jupyter notebook
 
 **Abstract:** Bring geometric algebra to life with `pytanga.viz`. Create a
-`Visualizer`, add entities (`Point`, `Line`, `Plane`, `Sphere`, `Circle`, point
-pairs), apply per-entity styles (color, opacity, wireframe, point size), and launch
-the interactive Three.js viewer with `viz.run()`. Cover camera configuration
-(auto-fit, explicit, partial), orbit controls, and the Ctrl+S screenshot feature.
-Demonstrate multi-scene support — creating named scenes, side-by-side display in
-Jupyter with `display_row()`. Show how to input raw MVs (PGA3, N3) for OPNS vs IPNS
-visualization.
+`Visualizer` (3D mode by default; 2D mode with `space_dim=2`), add entities
+(`Point`, `Line`, `Plane`, `Sphere`, `Circle`, point pairs, imaginary types), apply
+per-entity styles (color, opacity, wireframe, point size) using the style system
+and `default_styles`, and launch the interactive Three.js viewer with `viz.run()`.
+In 2D mode, the camera switches to an orthographic top-down view with pan
+(left/right-click drag) and zoom (scroll wheel) — no orbit rotation; full 3D
+entities still render correctly from the top-down perspective, and the `z`
+coordinate of entity dataclasses controls draw order. Cover camera configuration
+(auto-fit via `flush(fit_camera=True)`, explicit, partial), orbit controls (3D),
+and the Ctrl+S screenshot feature. Demonstrate multi-scene support — creating
+named scenes, browser navigation via `navigate_to()`, `list_browsers()`, viewer
+identity (`?viewer=` URL parameter), and side-by-side display in Jupyter with
+`display_row()`. Show how to input raw MVs (PGA3, N3) for OPNS vs IPNS
+visualization. Cover server lifecycle (`start()`/`flush()`/`stop()` vs `run()`),
+browser tab reuse (`reuse_existing=True`), and the `update_style()` method for
+changing entity style properties without rebuilding geometry.
 
 ---
 
@@ -336,11 +399,16 @@ clear labelling with geometric content for presentation-ready figures.
 
 **Format:** Jupyter notebook
 
-**Abstract:** Animate geometric constructions. Use frame streaming for high-FPS
-animations, keyframe tweening with `animate_to`, and the scene-aware `Timeline`
-sequencer for choreographed multi-entity animations (fade-in, move, rotate). Build
-an interactive `VisualizerApp` subclass with sliders, dropdowns, buttons, and layout
-groups — all driven by pytanga's GA computations in real time.
+**Abstract:** Animate geometric constructions. Use `PointPath` for connected line
+segments, object trails, per-point colors, and FIFO capping with gradient
+utilities. Use frame streaming for high-FPS animations (orbiting entities,
+physics simulations), keyframe tweening with `animate_to`, and the scene-aware
+`Timeline` sequencer for choreographed multi-entity animations (fade-in, move,
+rotate). Build an interactive `VisualizerApp` subclass with sliders, dropdowns,
+buttons, and layout groups — all driven by pytanga's GA computations in real
+time. Cover `update_style()` for changing entity style properties without
+rebuilding geometry, and `VizSceneHandle` methods for per-scene animation
+control.
 
 ---
 
@@ -351,8 +419,15 @@ groups — all driven by pytanga's GA computations in real time.
 **Abstract:** Export visualizations for sharing and publication. Generate
 self-contained HTML files (with embedded JS animation engine), embeddable HTML for
 iframes (Reveal.js slides), glTF/GLB for use in other 3D tools, PNG screenshots
-(programmatic), MP4 video capture, and presentation figures with `FigureStyle` and
-`SceneExporter`. Cover animated HTML export that preserves keyframe timelines.
+(programmatic), MP4 video capture (frame-capture + ffmpeg stitching), and
+presentation figures with `FigureStyle` (including `responsive` mode for filling
+parent containers) and `SceneExporter`. Cover animated HTML export that preserves
+keyframe timelines, including the `AnimStyle` dataclass (`fps`, `loop`,
+`show_controls`, `compress` — gzip-compresses embedded animation data for
+70–80 % smaller files, ~5 ms decompression at page load). Cover the keyboard
+shortcuts available in exported figures (`Ctrl+S` for PNG snapshots, `r` to
+toggle auto-rotation) and the `FigureConfig`/`export_figure()` pipeline for
+embedding in presentations.
 
 ---
 
@@ -368,11 +443,12 @@ standalone HTML animation. Show how all pieces — algebra, geometry, solving, a
 visualization — work together as a unified toolkit.
 
 **Visual Examples:** Every workflow in this tutorial produces visual output using
-`pytanga.viz.Visualizer`. Use `SceneExporter` to export self-contained HTML figures
-and, where animation is involved, animated HTML with the embedded JS playback engine
-(reference the [Animation tutorial](#18-visualization--animation-and-interactivity)
-and [Export tutorial](#19-visualization--export-and-publishing) for the animated export
-pipeline).
+`pytanga.viz.Visualizer` (including 2D views via `space_dim=2` where appropriate).
+Use `SceneExporter` to export self-contained HTML figures and, where animation is
+involved, animated HTML with the embedded JS playback engine (reference the
+[Animation tutorial](#18-visualization--animation-and-interactivity) and
+[Export tutorial](#19-visualization--export-and-publishing) for the animated export
+pipeline, including `AnimStyle(compress=True)` for compact animated exports).
 
 ---
 
@@ -380,7 +456,7 @@ pipeline).
 
 **Format:** Jupyter notebook
 
-**Abstract:** Go beyond the four built-in basis classes. Construct custom algebras with
+**Abstract:** Go beyond the eight built-in basis classes. Construct custom algebras with
 arbitrary dimension and signature (up to 31 dimensions). Show how to assign names to
 blades manually, create ad-hoc basis classes, and integrate custom algebras with
 `BladeMask`, the solver pipeline, and the geometry submodule (where supported). Cover
