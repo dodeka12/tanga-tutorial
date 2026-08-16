@@ -2054,7 +2054,7 @@ wheels = [
 
 [[package]]
 name = "tanga-py"
-version = "0.6.0"
+version = "0.10.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -2062,11 +2062,13 @@ dependencies = [
     { name = "rich" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/25/ed/e226470ceaf4300f66e1202a445604a00cc86b022090e432526d69b237f2/tanga_py-0.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:4719e690c6ea9c83926a3f1996d5a1235974ef7bf1d8b4252bd8ec5455fb41eb", size = 2228516, upload-time = "2026-08-10T15:19:21.748Z" },
-    { url = "https://files.pythonhosted.org/packages/12/3d/93bd0e26f23eaae2b8df4690b786738a5dca156b9bda7c07c9cc5c0068fa/tanga_py-0.6.0-cp312-cp312-win_amd64.whl", hash = "sha256:3d59332216ebc7382712195d38fca566a0182fbdb09d5660ea8471327a3724fa", size = 1961941, upload-time = "2026-08-10T15:19:23.426Z" },
-    { url = "https://files.pythonhosted.org/packages/16/92/0714c2ef9fe7695460982e378efb41cb44fcae10ebdcd5b393792ff74282/tanga_py-0.6.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:cff405a16423514aa806ede5ab5effcd4af9658a62c20c567bdda583f350f299", size = 2228588, upload-time = "2026-08-10T15:19:24.901Z" },
-    { url = "https://files.pythonhosted.org/packages/09/09/8be9921b1bf93a052a3b58be6a3f95c51b23e32185be8e968dabb6705565/tanga_py-0.6.0-cp313-cp313-win_amd64.whl", hash = "sha256:07ff4818a366d93c954d81762bb6e051b5bbac87857d94e1fbb8414bf5963686", size = 1962045, upload-time = "2026-08-10T15:19:26.463Z" },
-    { url = "https://files.pythonhosted.org/packages/5a/77/30a8cb71cad2044f287fdc12902e0a83c8543f7f4e055b1b0c2ea735ac74/tanga_py-0.6.0-py3-none-any.whl", hash = "sha256:8a6842d733230f80c26c6eeb88eee8d546911c7d93104700a93cec1e38a4f8e4", size = 690527, upload-time = "2026-08-10T15:19:27.826Z" },
+    { url = "https://files.pythonhosted.org/packages/ae/f7/7fb68ccbd137e3cbba050ede7ad06316af8b25994e20d89738bb5c6d3185/tanga_py-0.10.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:c752a8b3b2cc6e985cc4aa060f792abefbe9ab97e41c5a9f7b58cd76f5f2148b", size = 2011627, upload-time = "2026-08-16T09:48:18.227Z" },
+    { url = "https://files.pythonhosted.org/packages/75/a5/b6c714c300df4b6692a82745daa9dfac39ffb3e44684ff1880ba54e682a4/tanga_py-0.10.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:466239d8d200505a1da988c2035b5e6f7cc2022f9c1daa8fa42a85b4d10c2619", size = 2325956, upload-time = "2026-08-16T09:48:19.626Z" },
+    { url = "https://files.pythonhosted.org/packages/4f/7f/111a3c020dc80dd6c101bc92d88f59292fc9793bc93950105615a7f22000/tanga_py-0.10.0-cp312-cp312-win_amd64.whl", hash = "sha256:4d04c0b143def0c6f7a9b92a1caca2ce25e8e6fd570f5ce2deb5a561665e6f9a", size = 2059899, upload-time = "2026-08-16T09:48:20.822Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/82/b7cca17501b3577286de0bbaebbe01ce31e80e7551cdf0b4debe3127ef73/tanga_py-0.10.0-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:5d058e9ef1681d9650625d9d6944722061270a9958b2a9354e84041176a9ebfe", size = 2011973, upload-time = "2026-08-16T09:48:22.141Z" },
+    { url = "https://files.pythonhosted.org/packages/e6/34/63701c808a68e93af1cdcbe50cf3d2c99addb7a6270272a16e03bcf93423/tanga_py-0.10.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:71929f20b8affc09b9440c297c8eae45f44a46c0b82fb93ff303e236cd6dda02", size = 2326025, upload-time = "2026-08-16T09:48:23.542Z" },
+    { url = "https://files.pythonhosted.org/packages/59/cd/9de716b7a3c72e4f688e3edce2106dc12db63317eb22d38529ead4654c14/tanga_py-0.10.0-cp313-cp313-win_amd64.whl", hash = "sha256:8fd14b5528f4305ff8a23021a08ae9bf63499f829fe8e805bba2d86527178789", size = 2059989, upload-time = "2026-08-16T09:48:24.808Z" },
+    { url = "https://files.pythonhosted.org/packages/8d/df/68d0d7e65159c1286b443c3a68fbf7d8fdf53f4b42ff71db0c742adaf06a/tanga_py-0.10.0-py3-none-any.whl", hash = "sha256:d709ff4fa34e48294d899ec514feaebb4e742d652194edaf001e5ba64c02e363", size = 787648, upload-time = "2026-08-16T09:48:26.109Z" },
 ]
 
 [package.optional-dependencies]
