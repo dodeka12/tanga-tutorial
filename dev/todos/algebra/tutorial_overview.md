@@ -28,7 +28,7 @@ plan.
   from pytanga.geometry import Geometry
 
   geo = Geometry(BasisE3())     # binds an algebra; OPNS/IPNS read from algebra.opns
-  mv = geo.create(entity)       # Entity/Operator → MV
+  mv = geo(entity)       # Entity/Operator → MV
   result = geo.analyze(mv)      # MV → Entity/Operator
   result = geo(mv)              # geo(...) dispatch: entity/operator → create, MV → analyze
   ```
@@ -71,18 +71,7 @@ Visualizer API; reference [Part II](../viz/tutorial_overview.md).
 
 ---
 
-## 2. Installation and First Steps
-
-**Format:** Jupyter notebook
-
-**Abstract:** Walk through installing pytanga with uv/pip, verifying the installation,
-calling `pytanga.install_docs()` for AI-tool documentation access, and running a
-minimal "hello world" multivector operation to confirm everything works. Covers the
-on-demand C++ compilation model, pre-compiled wheels, and the environment setup.
-
----
-
-## 3. Algebra and Multivectors — The Core
+## 2. Algebra and Multivectors — The Core
 
 **Format:** Jupyter notebook
 
@@ -95,7 +84,7 @@ reverse, involution, and inversion. Show grade extraction, blade iteration, and
 
 ---
 
-## 4. The Eight Basis Classes
+## 3. The Eight Basis Classes
 
 **Format:** Jupyter notebook
 
@@ -138,14 +127,14 @@ algebras, and a second figure showing the 2D counterparts with
 
 ---
 
-## 5. Euclidean 3D (G(3,0)) — Vectors, Bivectors, Rotors
+## 4. Euclidean 3D (G(3,0)) — Vectors, Bivectors, Rotors
 
 **Format:** Jupyter notebook
 
 **Abstract:** Deep dive into `BasisE3`. Build vectors and bivectors from coordinates and
 from the geometric product of basis vectors. Compute the outer product to form
 bivectors, use the inner product for metric relationships. Construct rotors from
-angle-axis pairs using the geometry submodule's `Rotor` operator (via `geo.create()`),
+angle-axis pairs using the geometry submodule's `Rotor` operator (via `geo()`),
 apply them with the versor/sandwich product `R * v * ~R`, compose multiple rotations,
 and verify results. Cover the pseudoscalar, Hodge dual via the signed dual operator,
 and the correspondence between bivectors and rotation planes.
@@ -158,7 +147,7 @@ reference [Part II](../viz/tutorial_overview.md) for setup instructions.
 
 ---
 
-## 6. Projective 3D (G(4,0)) — Homogeneous Coordinates
+## 5. Projective 3D (G(4,0)) — Homogeneous Coordinates
 
 **Format:** Jupyter notebook
 
@@ -169,7 +158,7 @@ projection, translation via projective rotors, and the relationship between
 projective and Euclidean entities. Highlight the geometry submodule's `Geometry`
 class and the `analyze()`/`create()` pipeline as shortcuts for working with P3
 entities. Note that translation goes through the geometry pipeline
-(`geo.create(Translator(...))`); all P3 entities and operators are created via the
+(`geo(Translator(...))`); all P3 entities and operators are created via the
 `pytanga.geometry` submodule.
 
 **Visual Examples:** Produce standalone HTML figures via `pytanga.viz.Visualizer`
@@ -179,7 +168,7 @@ reference [Part II](../viz/tutorial_overview.md).
 
 ---
 
-## 7. Conformal / Null 3D (G(5,0)⊕[B₁,0,0,0]) — Spheres, Circles, Point Pairs
+## 6. Conformal / Null 3D (G(5,0)⊕[B₁,0,0,0]) — Spheres, Circles, Point Pairs
 
 **Format:** Jupyter notebook
 
@@ -199,7 +188,7 @@ explain the Visualizer API; reference [Part II](../viz/tutorial_overview.md).
 
 ---
 
-## 8. PGA 3D — Plane-Based Geometric Algebra
+## 7. PGA 3D — Plane-Based Geometric Algebra
 
 **Format:** Jupyter notebook
 
@@ -219,7 +208,7 @@ self-contained HTML via `SceneExporter`. Do not explain the Visualizer API; refe
 
 ---
 
-## 9. Duality and Complements
+## 8. Duality and Complements
 
 **Format:** Jupyter notebook
 
@@ -238,7 +227,7 @@ reference [Part II](../viz/tutorial_overview.md).
 
 ---
 
-## 10. Modulus Arithmetic with Integer Algebras
+## 9. Modulus Arithmetic with Integer Algebras
 
 **Format:** Jupyter notebook
 
@@ -250,7 +239,7 @@ discuss use cases in cryptography and exact symbolic computation.
 
 ---
 
-## 11. BladeMask — Labelling Subspaces
+## 10. BladeMask — Labelling Subspaces
 
 **Format:** Jupyter notebook / Python script
 
@@ -264,7 +253,7 @@ different algebras cannot be mixed. Show how to derive `product_blade_mask` and
 
 ---
 
-## 12. Equation Solving — From GA to Linear Systems
+## 11. Equation Solving — From GA to Linear Systems
 
 **Format:** Jupyter notebook
 
@@ -278,7 +267,7 @@ and whether involutions are applied.
 
 ---
 
-## 13. Matrix Operations — Multivectors Meet NumPy
+## 12. Matrix Operations — Multivectors Meet NumPy
 
 **Format:** Jupyter notebook
 
@@ -291,7 +280,7 @@ encodes any GA product as a linear map.
 
 ---
 
-## 14. Tensor Operations — Labelled Einsum for Multivectors
+## 13. Tensor Operations — Labelled Einsum for Multivectors
 
 **Format:** Jupyter notebook
 
@@ -305,7 +294,7 @@ per-element computation along a labelled axis.
 
 ---
 
-## 15. Geometry Submodule — Algebra-Independent Entities
+## 14. Geometry Submodule — Algebra-Independent Entities
 
 **Format:** Jupyter notebook
 
@@ -316,7 +305,7 @@ per-element computation along a labelled axis.
 `Translator`, `Dilator`, `Motor`, `GeneralRotor`). Show the entity/operator coverage
 matrices across all eight algebras (E3, P3, PGA3, N3, E2, P2, PGA2, N2). Present the
 `Geometry` convenience class as the recommended pattern — bind an algebra once (with an
-optional `seed` for reproducible random generation) and call `geo.create(entity)` /
+optional `seed` for reproducible random generation) and call `geo(entity)` /
 `geo.analyze(mv)` / `geo(obj)` without repeating the algebra on every call; the
 OPNS/IPNS interpretation is read from the algebra's `opns` flag (mutable, default
 `True`). Cover MV-accepting constructors (`Point(mv)`, `Plane(mv)`, …), factory
@@ -337,7 +326,7 @@ visualization-oriented uses are the only reason it exists; it is introduced in
 [Part II — Animation](../viz/tutorial_overview.md) when discussing `PointPath`.
 
 **Visual Examples:** Use `pytanga.viz.Visualizer` to produce standalone HTML figures
-of each entity type created via `geo.create()` and fed to the Visualizer. Show
+of each entity type created via `geo()` and fed to the Visualizer. Show
 round-trip validation: create an MV from a geometry entity, re-analyze it with
 `geo.analyze()`, and verify the resulting entity matches the original — all visually
 confirmed in 3D. Export self-contained HTML via `SceneExporter`. Do not explain the
@@ -345,7 +334,7 @@ Visualizer API; reference [Part II](../viz/tutorial_overview.md).
 
 ---
 
-## 16. Custom Algebras and Advanced Patterns
+## 15. Custom Algebras and Advanced Patterns
 
 **Format:** Jupyter notebook
 
@@ -358,7 +347,7 @@ template engine behind the scenes.
 
 ---
 
-## 17. Visualizing Algebra Entities
+## 16. Visualizing Algebra Entities
 
 **Format:** Jupyter notebook
 

@@ -49,21 +49,20 @@ tutorials/
 ├── algebra/             # Part I — Geometric Algebra & Core
 │   ├── README.md
 │   ├── 01_quick_tour/
-│   ├── 02_installation/
-│   ├── 03_algebra_core/
-│   ├── 04_basis_classes/
-│   ├── 05_euclidean_e3/
-│   ├── 06_projective_p3/
-│   ├── 07_conformal_n3/
-│   ├── 08_pga3/
-│   ├── 09_duality/
-│   ├── 10_modulus/
-│   ├── 11_blade_mask/
-│   ├── 12_equation_solving/
-│   ├── 13_matrix/
-│   ├── 14_tensor/
-│   ├── 15_geometry/
-│   └── 21_custom_algebras/
+│   ├── 02_algebra_core/
+│   ├── 03_basis_classes/
+│   ├── 04_euclidean_e3/
+│   ├── 05_projective_p3/
+│   ├── 06_conformal_n3/
+│   ├── 07_pga3/
+│   ├── 08_duality/
+│   ├── 09_modulus/
+│   ├── 10_blade_mask/
+│   ├── 11_equation_solving/
+│   ├── 12_matrix/
+│   ├── 13_tensor/
+│   ├── 14_geometry/
+│   └── 15_custom_algebras/
 └── visualization/       # Part II — Visualization
     ├── README.md
     ├── 01_quick_tour/
