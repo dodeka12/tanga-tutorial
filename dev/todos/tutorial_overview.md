@@ -34,3 +34,59 @@ single, basic chapter on visualizing GA entities and operators that defers the G
 detail to Part I.
 
 **Plan:** [dev/todos/viz/tutorial_overview.md](viz/tutorial_overview.md)
+
+---
+
+## Tutorials Folder Layout
+
+The tutorial notebooks live under `tutorials/`, organized into two main subfolders
+that mirror the two parts of this series. Each subfolder numbers its tutorials
+independently, starting at `01`.
+
+```
+tutorials/
+├── README.md
+├── algebra/             # Part I — Geometric Algebra & Core
+│   ├── README.md
+│   ├── 01_quick_tour/
+│   ├── 02_installation/
+│   ├── 03_algebra_core/
+│   ├── 04_basis_classes/
+│   ├── 05_euclidean_e3/
+│   ├── 06_projective_p3/
+│   ├── 07_conformal_n3/
+│   ├── 08_pga3/
+│   ├── 09_duality/
+│   ├── 10_modulus/
+│   ├── 11_blade_mask/
+│   ├── 12_equation_solving/
+│   ├── 13_matrix/
+│   ├── 14_tensor/
+│   ├── 15_geometry/
+│   └── 21_custom_algebras/
+└── visualization/       # Part II — Visualization
+    ├── README.md
+    ├── 01_quick_tour/
+    ├── 02_viz_scenes/
+    ├── 03_viz_labels/
+    ├── 04_viz_animation/
+    ├── 05_viz_export/
+    └── 06_end_to_end/
+```
+
+- **`algebra/`** — Part I tutorials: the algebra quick tour, installation, the
+  algebra/multivector core, the basis classes, the 3D deep dives (E3, P3, N3,
+  PGA3), duality, modulus arithmetic, the numerical tooling (BladeMask, solver,
+  matrix, tensor), the geometry submodule, and custom algebras.
+- **`visualization/`** — Part II tutorials: a viewer quick tour, scenes, labels,
+  animation, and export, closed by `06_end_to_end` — a cross-cutting capstone that ties
+  algebra, geometry, solving, and visualization together.
+
+> Each subfolder numbers its tutorials from `01` and opens with its own quick tour —
+> `algebra/01_quick_tour` (the algebra) and `visualization/01_quick_tour` (the viewer).
+> `algebra/` keeps its original numbers (`01`–`15`, plus `21_custom_algebras`, the
+> "Custom Algebras" chapter that still carries its old flat-layout number).
+> `visualization/` restarts at `01`; its old flat-layout numbers `16`–`20` become
+> `02`–`06` after the new `01_quick_tour`. Each folder also carries a `README.md`
+> (`tutorials/README.md`, `tutorials/algebra/README.md`,
+> `tutorials/visualization/README.md`).
