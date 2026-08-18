@@ -90,6 +90,8 @@ This installs:
 ```bash
 # Run a single example script
 uv run python examples/basic_algebra.py
+uv run python examples/pga3_intro.py
+uv run python examples/pga3_visualizer.py
 
 # Or activate the venv and run directly
 source .venv/bin/activate
@@ -103,32 +105,61 @@ python examples/basic_algebra.py
 uv run jupyter notebook tutorials/
 ```
 
-Then open `01_e3_basics.ipynb` in your browser.
+The tutorials are split into two parts, each numbered from `01`:
+
+- `tutorials/algebra/` — **Part I · Geometric Algebra & Core** (currently
+  `02_algebra_core`, `03_basis_classes`).
+- `tutorials/visualization/` — **Part II · Visualization** (not yet implemented).
+
+Open a notebook (e.g. `tutorials/algebra/02_algebra_core/02_algebra_core.ipynb`) in
+your browser. The full tutorial-series plan lives in `dev/todos/`.
 
 ## Repository Structure
 
 ```
-├── examples/          # Standalone Python scripts
-│   ├── basic_algebra.py   # E3 Euclidean algebra basics
-│   └── pga3_intro.py      # PGA3 projective geometry intro
-├── tutorials/         # Jupyter notebooks
-│   └── 01_e3_basics.ipynb  # Interactive E3 tutorial
-├── pyproject.toml     # Project metadata and dependencies
-├── main.py            # Placeholder entry point
+├── examples/            # Standalone Python scripts
+│   ├── basic_algebra.py     # E3 Euclidean algebra basics
+│   ├── pga3_intro.py        # PGA3 projective geometry intro
+│   └── pga3_visualizer.py   # PGA3 viewer demo
+├── tutorials/           # Jupyter notebooks
+│   ├── algebra/             # Part I — Geometric Algebra & Core
+│   └── visualization/       # Part II — Visualization
+├── dev/todos/           # Tutorial-series plans
+├── .dep-docs/           # Upstream pytanga documentation
+├── .dep-examples/       # Upstream pytanga examples
+├── pyproject.toml       # Project metadata and dependencies
 └── README.md
 ```
 
-## Later: Installing tanga-py from PyPI
+## Installing tanga-py (TestPyPI → PyPI)
 
-Once `tanga-py` is published on PyPI, you can switch from the editable path dependency to a PyPI version by editing `pyproject.toml`:
+The project currently installs `tanga-py` (`0.11.0rc1`) from the **TestPyPI** index
+via `[tool.uv.sources]`:
 
 ```toml
-# Replace this:
-[tool.uv.sources]
-tanga-py = { path = "../tanga", editable = true }
-
-# With:
+[project]
 dependencies = [
-    "tanga-py>=0.1.0",
+    "tanga-py[compile,examples]==0.11.0rc1",
+]
+
+[tool.uv]
+prerelease = "allow"
+
+[tool.uv.sources]
+tanga-py = { index = "testpypi" }
+
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+explicit = true
+```
+
+Once `tanga-py` is published on PyPI, switch to a PyPI release by updating the
+dependency and removing the `[tool.uv.sources]` entry:
+
+```toml
+[project]
+dependencies = [
+    "tanga-py[compile,examples]>=1.0.0",
 ]
 ```

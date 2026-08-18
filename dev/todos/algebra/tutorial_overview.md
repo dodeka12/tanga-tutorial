@@ -66,7 +66,7 @@ Sections:
 **Visual Examples:** Use `pytanga.viz.Visualizer` to render conformal-algebra
 (`BasisN3`) entities — a sphere with its center and radius, a circle as a
 sphere–sphere intersection, and a point pair — giving an immediate, visual sense of
-what the conformal model produces. Export via `SceneExporter`. Do not explain the
+what the conformal model produces. Export via `export_snapshot()`. Do not explain the
 Visualizer API; reference [Part II](../viz/tutorial_overview.md).
 
 ---
@@ -163,7 +163,7 @@ entities. Note that translation goes through the geometry pipeline
 
 **Visual Examples:** Produce standalone HTML figures via `pytanga.viz.Visualizer`
 showing a P3 point, a P3 line (as a bivector), and a plane in projective space. Use
-`SceneExporter` to export self-contained HTML. Do not explain the Visualizer API;
+`export_snapshot()` to export self-contained HTML. Do not explain the Visualizer API;
 reference [Part II](../viz/tutorial_overview.md).
 
 ---
@@ -183,7 +183,7 @@ operators: rotors, translators, dilators, and the inversion operator.
 of a sphere, a circle (as sphere–sphere intersection), a point pair, an imaginary
 circle (`ImagCircle` — dotted wireframe, dual of a real point pair), an imaginary
 sphere (`ImagSphere`), and the effect of applying a dilator (scaling) and a
-translator (displacement). Output self-contained HTML via `SceneExporter`. Do not
+translator (displacement). Output self-contained HTML via `export_snapshot()`. Do not
 explain the Visualizer API; reference [Part II](../viz/tutorial_overview.md).
 
 ---
@@ -203,7 +203,7 @@ the `pytanga.geometry` submodule.
 **Visual Examples:** Produce standalone HTML figures via `pytanga.viz.Visualizer`
 showing a plane, a line (intersection of two planes), a point (intersection of three
 planes), and a motor applied to a point (combined rotation + translation). Export
-self-contained HTML via `SceneExporter`. Do not explain the Visualizer API; reference
+self-contained HTML via `export_snapshot()`. Do not explain the Visualizer API; reference
 [Part II](../viz/tutorial_overview.md).
 
 ---
@@ -222,7 +222,7 @@ normals/orthogonal complements.
 **Visual Examples:** Use `pytanga.viz.Visualizer` to produce standalone HTML figures
 illustrating the geometric meaning of duality: a bivector (oriented plane) and its
 Hodge dual vector (normal direction), and the IPNS/OPNS duality of a sphere in N3.
-Export self-contained HTML via `SceneExporter`. Do not explain the Visualizer API;
+Export self-contained HTML via `export_snapshot()`. Do not explain the Visualizer API;
 reference [Part II](../viz/tutorial_overview.md).
 
 ---
@@ -329,7 +329,7 @@ visualization-oriented uses are the only reason it exists; it is introduced in
 of each entity type created via `geo()` and fed to the Visualizer. Show
 round-trip validation: create an MV from a geometry entity, re-analyze it with
 `geo.analyze()`, and verify the resulting entity matches the original — all visually
-confirmed in 3D. Export self-contained HTML via `SceneExporter`. Do not explain the
+confirmed in 3D. Export self-contained HTML via `export_snapshot()`. Do not explain the
 Visualizer API; reference [Part II](../viz/tutorial_overview.md).
 
 ---
