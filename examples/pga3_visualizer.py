@@ -13,7 +13,7 @@ def main() -> None:
     geo = Geometry(P3)
 
     # Define a plane: the XY-plane (z=0) with normal pointing up (0, 0, 1)
-    plane = geo.create(Plane(
+    plane = geo(Plane(
         point=Point(-1, 0, 0),
         normal=Direction(1, 1, 0),
     ))
@@ -22,7 +22,7 @@ def main() -> None:
     viz.add(plane, color="#4488ff", opacity=0.4, label="XY Plane")
 
     # Define a line passing through (1, 0, 0) pointing along the y-axis
-    line = geo.create(Line(
+    line = geo(Line(
         origin=Point(1, 0, 0),
         direction=Direction(0, 1, 0),
     ))
