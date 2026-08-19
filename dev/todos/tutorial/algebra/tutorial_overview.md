@@ -178,8 +178,12 @@ reference [Part II](../viz/tutorial_overview.md).
 **Abstract:** Deep dive into `BasisN3`. Explain the null-vector embedding (`e0`, `e∞`),
 IPNS vs OPNS representations, and how spheres, circles, point pairs, lines, and planes
 emerge as blades. Build a sphere from a center and radius, extract center and radius
-from a sphere. Construct circles as intersections of spheres. Show the distinction
-between IPNS entities (as `analyze` output) and OPNS constructions. Introduce N3
+from a sphere. Construct circles as intersections of spheres. Demonstrate the
+`join()` and `meet()` blade operations — the union and intersection of subspaces — and
+contrast them with the outer product (join of independent subspaces, zero for incident
+ones) and the inner product (the metric); use the outer/inner product for incidence
+relations. Show the distinction between IPNS entities (as `analyze` output) and OPNS
+constructions. Introduce N3
 operators: rotors, translators, dilators, and the inversion operator.
 
 **Visual Examples:** Use `pytanga.viz.Visualizer` to produce standalone HTML figures
@@ -197,15 +201,19 @@ explain the Visualizer API; reference [Part II](../viz/tutorial_overview.md).
 
 **Abstract:** Deep dive into `BasisPGA3`. Explain the single-null-vector embedding used
 in PGA3 (related to N3 but with a single `e0` with `e0² = 0`). Build points, lines, and
-planes as blades. Construct Euclidean motions — translators, rotors, and motors — and
+planes as blades. Demonstrate the `join()` and `meet()` blade operations — e.g. the
+meet of two planes is their intersection line and the meet of three planes is their
+intersection point — and contrast them with the outer/inner product. Construct Euclidean
+motions — translators, rotors, and motors — and
 apply them to entities via the sandwich product. Show how PGA3 unifies rotations,
 translations, and reflections in a single algebraic framework. Demonstrate the
 Gunn/Dorst null embedding (`e0`, `e0_inv`) and construct entities and motions through
 the `pytanga.geometry` submodule.
 
 **Visual Examples:** Produce standalone HTML figures via `pytanga.viz.Visualizer`
-showing a plane, a line (intersection of two planes), a point (intersection of three
-planes), and a motor applied to a point (combined rotation + translation). Export
+showing a plane, a line (intersection of two planes via `meet()`), a point (intersection
+of three planes via `meet()`), and a motor applied to a point (combined rotation +
+translation). Export
 self-contained HTML via `export_snapshot()`. Do not explain the Visualizer API; reference
 [Part II](../viz/tutorial_overview.md).
 
