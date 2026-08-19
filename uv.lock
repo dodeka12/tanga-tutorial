@@ -2057,21 +2057,11 @@ wheels = [
 
 [[package]]
 name = "tanga-py"
-version = "0.11.0rc1"
-source = { registry = "https://test.pypi.org/simple/" }
+source = { editable = "../tanga" }
 dependencies = [
     { name = "aiohttp" },
     { name = "numpy" },
     { name = "rich" },
-]
-wheels = [
-    { url = "https://test-files.pythonhosted.org/packages/a2/b4/32bb240c6b4d660461228eb39dcfd8d6d74f56a531610cdc39abf04a1147/tanga_py-0.11.0rc1-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:4b805a3eaad9d344f2e126dfbaa8118696a82e70d2f30effbf21c9de9d1695f9", size = 2062777, upload-time = "2026-08-18T16:47:34.51Z" },
-    { url = "https://test-files.pythonhosted.org/packages/d8/c3/cd8716eafc6d989e1dcb8c69443e9aa81c7114c6d5c462db73d7ac559b8e/tanga_py-0.11.0rc1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:380e1778dbb56d9120c067c76b9f932736bc2ab7e0677a18379ae2fd36d90886", size = 2377240, upload-time = "2026-08-18T16:47:35.774Z" },
-    { url = "https://test-files.pythonhosted.org/packages/3f/4d/cba6d91f607e4fe858b5d10337656b9f51871234309f758c4ba64bb9e928/tanga_py-0.11.0rc1-cp312-cp312-win_amd64.whl", hash = "sha256:59565c277b0bf212f08c623880179bf09579279292026427bc25b781445aa67b", size = 2111363, upload-time = "2026-08-18T16:47:37.336Z" },
-    { url = "https://test-files.pythonhosted.org/packages/05/70/462a82646e22605fa047e6b352ec8a2049cabd0794cf96e5774b787e5cfb/tanga_py-0.11.0rc1-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:9c5ef3cd9379066b42d3cb79123b49da4c03b4e89a6cdb3a4a6c6c25f6a5bcfa", size = 2063122, upload-time = "2026-08-18T16:47:38.889Z" },
-    { url = "https://test-files.pythonhosted.org/packages/c3/42/d723ebc698d00d4a5f4ea43a3d0771c296494b0bf4323c406629017aef96/tanga_py-0.11.0rc1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:cdec05c767e94e1b0b628b43a962bb382f06f417440ac5033522ee75bee24e86", size = 2377310, upload-time = "2026-08-18T16:47:39.996Z" },
-    { url = "https://test-files.pythonhosted.org/packages/73/a9/7ad67705ce64254f86e23d0522b3d6d30ddd22798bdcb6a7c6737b22c365/tanga_py-0.11.0rc1-cp313-cp313-win_amd64.whl", hash = "sha256:cb7107f6cee74ace0bf8072987da878e46d28d897f0af4abef7c40407cd9e92c", size = 2111457, upload-time = "2026-08-18T16:47:41.168Z" },
-    { url = "https://test-files.pythonhosted.org/packages/ac/09/10b5f6445ee9b400ea34102bf2701adbd35bb9c866a931b46e1eb0265535/tanga_py-0.11.0rc1-py3-none-any.whl", hash = "sha256:3b785ead564793d37d307626467569b652d78d1a799e7ca4e161f0f0b0bb68e5", size = 838793, upload-time = "2026-08-18T16:47:42.387Z" },
 ]
 
 [package.optional-dependencies]
@@ -2085,6 +2075,33 @@ examples = [
     { name = "ipython" },
     { name = "jupyter" },
     { name = "scipy" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aiohttp", specifier = ">=3.14.3" },
+    { name = "cmake", marker = "extra == 'compile'", specifier = ">=3.18" },
+    { name = "galgebra", marker = "extra == 'galgebra'", specifier = ">=0.5.0" },
+    { name = "ipykernel", marker = "extra == 'examples'", specifier = ">=6.29" },
+    { name = "ipython", marker = "extra == 'examples'", specifier = ">=8.30" },
+    { name = "jupyter", marker = "extra == 'examples'", specifier = ">=1.0" },
+    { name = "ninja", marker = "extra == 'compile'" },
+    { name = "numpy", specifier = ">=2.5.1" },
+    { name = "pybind11", marker = "extra == 'compile'", specifier = ">=2.11" },
+    { name = "rich", specifier = ">=13.0" },
+    { name = "scipy", marker = "extra == 'examples'", specifier = ">=1.13" },
+]
+provides-extras = ["compile", "examples", "galgebra"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "mike", specifier = ">=2.0" },
+    { name = "mkdocs-material", specifier = ">=9.7.7" },
+    { name = "pre-commit", specifier = ">=4.3" },
+    { name = "pytest", specifier = ">=9.1.1" },
+    { name = "ruff", specifier = ">=0.14.0" },
+    { name = "tanga-py", extras = ["compile", "examples", "galgebra"] },
+    { name = "twine", specifier = ">=6.0" },
 ]
 
 [[package]]
@@ -2104,7 +2121,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "tanga-py", extras = ["compile", "examples"], specifier = "==0.11.0rc1", index = "https://test.pypi.org/simple/" }]
+requires-dist = [{ name = "tanga-py", extras = ["compile", "examples"], editable = "../tanga" }]
 
 [package.metadata.requires-dev]
 dev = [
