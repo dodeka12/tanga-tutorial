@@ -22,16 +22,19 @@ plan.
   algebras (see [Tutorial 16](#16-custom-algebras-and-advanced-patterns)).
 - **Geometric entities and operators are created through the `pytanga.geometry`
   submodule**, not on the basis classes. The recommended pattern is the
-  `Geometry` convenience class:
+  `Geometry` convenience class, which maps between geometry and multivectors
+  with a single `geo(...)` call (`geo(entity)` → `MV`, `geo(mv)` → entity):
 
   ```python
   from pytanga.geometry import Geometry
 
   geo = Geometry(BasisE3())     # binds an algebra; OPNS/IPNS read from algebra.opns
-  mv = geo(entity)       # Entity/Operator → MV
-  result = geo.analyze(mv)      # MV → Entity/Operator
-  result = geo(mv)              # geo(...) dispatch: entity/operator → create, MV → analyze
+  mv = geo(entity)              # Entity/Operator → MV
+  result = geo(mv)              # MV → Entity/Operator
   ```
+
+  (`geo.create(entity)` and `geo.analyze(mv)` are the explicit equivalents of
+  `geo(entity)` and `geo(mv)`.)
 
 - The OPNS/IPNS interpretation is an **algebra property** (`algebra.opns`,
   mutable, default `True`), read automatically by creation and analysis — there
@@ -53,7 +56,7 @@ covers the topic in full. For a tour of the viewer itself, see
 Sections:
 
 - **Algebra & Multivectors** — Create an algebra, build multivectors from strings,
-  compute the geometric product, extract grades. → [Tutorial 3](#3-algebra-and-multivectors--the-core)
+  compute the geometric product, inner product and outer product, extract grades. add a tabel of all available GA operations and how to excute them in pytanga → [Tutorial 3](#3-algebra-and-multivectors--the-core)
 - **Basis Classes** — Use `BasisE3` and `BasisPGA3` for named blades; glimpse the 2D
   basis classes. → [Tutorial 4](#4-the-eight-basis-classes)
 - **Rotors & Motions** — Build a rotor with the geometry submodule's `Rotor` and rotate

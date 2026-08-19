@@ -8,7 +8,9 @@ ordered list of tutorials.
 > (e.g. `E3 = BasisE3()`, `PGA = BasisPGA3()`) rather than the generic
 > `Algebra(dim, sig, dtype)` constructor. Geometric entities and operators are
 > created through the `pytanga.geometry` submodule — not on the basis classes —
-> with the `Geometry` convenience class as the recommended pattern. The OPNS/IPNS
+> with the `Geometry` convenience class as the recommended pattern. Map between
+> geometry and multivectors with the single `geo(...)` call — `geo(entity)` builds
+> an `MV`, `geo(mv)` re-analyzes one back into an entity. The OPNS/IPNS
 > interpretation is an **algebra property** (`algebra.opns`, mutable, default
 > `True`), read automatically; there are no per-call `opns=` overrides.
 
