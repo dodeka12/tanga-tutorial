@@ -173,6 +173,9 @@ venv.bak/
 # mkdocs documentation
 /site
 
+# Jupyter Book v2 / MyST build output
+/_build/
+
 # mypy
 .mypy_cache/
 .dmypy.json

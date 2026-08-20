@@ -114,6 +114,64 @@ The tutorials are split into two parts, each numbered from `01`:
 Open a notebook (e.g. `tutorials/algebra/02_algebra_core/02_algebra_core.ipynb`) in
 your browser. The full tutorial-series plan lives in `dev/todos/`.
 
+## Documentation (Jupyter Book v2)
+
+The tutorials are also rendered as a book with **Jupyter Book v2** (powered by the
+MyST Document Engine — no Sphinx). Configuration lives in the root `myst.yml`.
+
+### Preview the book locally
+
+```bash
+uv sync --group dev
+uv run jupyter book start       # serves http://localhost:3000 with live reload
+```
+
+The `start` command runs its own dev webserver; no separate static-site server is
+needed. To produce a static HTML build (e.g. for CI checks):
+
+```bash
+uv run jupyter book build --html --strict
+cd _build/html 2>/dev/null || echo "see _build/ for build output"
+```
+
+### Run notebook cells live (self-contained, local by default)
+
+Each notebook page exposes a power button for **in-page execution**. By default
+`myst.yml` is configured for a **local Jupyter server** so everything runs
+self-contained (no internet). The power button *connects to* an already-running
+server — it does not launch one — so start the Jupyter server **first** (in a
+separate terminal):
+
+```bash
+# Terminal 1 — the book
+uv run jupyter book start
+
+# Terminal 2 — the local Jupyter kernel server
+uv run scripts/serve-local.sh
+```
+
+The helper script uses port `8888`, token `tanga-local`, and allows CORS from
+`http://localhost:3000` — matching `myst.yml` (`project.jupyter.server` and
+`project.jupyter.kernelName: python3`). Without step 2, pressing the power button
+will fail because there is no kernel server to connect to.
+
+### Deploy to GitHub Pages (Binder-backed, later)
+
+For the published site, in `myst.yml` uncomment `project.github` and the
+`jupyter: true` line, and comment out the `jupyter.server` block. Then:
+
+```bash
+uv run jupyter book init --gh-pages   # generates .github/workflows/deploy.yml
+```
+
+Enable **GitHub Pages → Source: GitHub Actions** in the repository settings. Live
+execution then runs on Binder, which builds its environment from a root
+`requirements.txt` (not `pyproject.toml`/`uv.lock`), so add one when enabling this.
+
+> **Note:** in-page execution and the launch button are marked **beta** in Jupyter
+> Book v2. JupyterLite (in-browser WASM) is **not** supported here because `tanga-py`
+> ships compiled native extensions.
+
 ## Repository Structure
 
 ```
@@ -127,6 +185,8 @@ your browser. The full tutorial-series plan lives in `dev/todos/`.
 ├── dev/todos/           # Tutorial-series plans
 ├── .dep-docs/           # Upstream pytanga documentation
 ├── .dep-examples/       # Upstream pytanga examples
+├── myst.yml             # Jupyter Book v2 configuration
+├── index.md             # Book landing page
 ├── pyproject.toml       # Project metadata and dependencies
 └── README.md
 ```

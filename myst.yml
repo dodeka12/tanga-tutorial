@@ -1,0 +1,51 @@
+version: 1
+project:
+  title: TanGA Tutorial
+  description: Tutorials for the TanGA geometric algebra library
+  # Uncomment `github` when publishing to GitHub Pages (required for the
+  # Binder-backed launch button / in-page execution below).
+  # github: dodeka12/tanga-tutorial
+
+  # Local, self-contained in-page execution (default):
+  # point the book at a locally running Jupyter server, so readers can run
+  # notebook cells live without any internet access.
+  #
+  # The `kernelName` must match a kernel installed in that server, and the
+  # `token` must match the value used when starting it. Start the server with:
+  #
+  #   uv run scripts/serve-local.sh
+  #
+  # or manually:
+  #
+  #   jupyter lab --no-browser --ServerApp.port=8888 \
+  #               --IdentityProvider.token=tanga-local \
+  #               --ServerApp.allow_origin=http://localhost:3000
+  #
+  # The "power" button on each notebook page connects to this already-running
+  # server (it does not launch one itself — launching is Binder's job).
+  jupyter:
+    kernelName: python3
+    server:
+      url: http://localhost:8888/
+      token: tanga-local
+
+  # GitHub Pages deployment (Binder-backed live execution). To use this later:
+  #   1. comment out the `jupyter` block above,
+  #   2. uncomment `project.github` and the `jupyter: true` line below.
+  # jupyter: true
+
+  toc:
+    - file: index.md
+    - title: Tutorials
+      children:
+        - title: Algebra
+          children:
+            - file: tutorials/algebra/01_quick_tour/01_quick_tour.ipynb
+            - file: tutorials/algebra/02_algebra_core/02_algebra_core.ipynb
+            - file: tutorials/algebra/03_basis_classes/03_basis_classes.ipynb
+            - file: tutorials/algebra/04_euclidean_e3/04_euclidean_e3.ipynb
+            - file: tutorials/algebra/05_projective_p3/05_projective_p3.ipynb
+            - file: tutorials/algebra/06_conformal_n3/06_conformal_n3.ipynb
+            - file: tutorials/algebra/07_pga3/07_pga3.ipynb
+site:
+  template: book-theme
