@@ -5,16 +5,28 @@ description = "Tutorials and examples for the TanGA geometric algebra library"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "tanga-py[compile,examples]>=0.2.4",
-]
-
-[dependency-groups]
-dev = [
+    "tanga-py[compile,examples]>=0.11.0",
+    # pre-release version
+    # "tanga-py[compile,examples]==0.11.0rc1",
     "jupyter>=1.0",
     "ipykernel>=6.29",
     "ipython>=8.30",
     "scipy>=1.13",
 ]
 
+[dependency-groups]
+dev = [
+]
+
+
+# [tool.uv]
+# prerelease = "allow"
+
 # [tool.uv.sources]
+# tanga-py = { index = "testpypi" }
 # tanga-py = { path = "../tanga", editable = true }
+
+# [[tool.uv.index]]
+# name = "testpypi"
+# url = "https://test.pypi.org/simple/"
+# explicit = true

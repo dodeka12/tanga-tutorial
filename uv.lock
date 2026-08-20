@@ -2054,7 +2054,7 @@ wheels = [
 
 [[package]]
 name = "tanga-py"
-version = "0.2.4"
+version = "0.11.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -2062,8 +2062,13 @@ dependencies = [
     { name = "rich" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/04/ca/ea324010b91dd8edacd84abab1becd8ca639fc384e6d692ad64790009b5e/tanga_py-0.2.4-py3-none-any.whl", hash = "sha256:f4ad641db0df65d92123ccd3679d44410673782772b291cb4a2e729bb8281fb4", size = 542215, upload-time = "2026-08-02T15:46:45.283Z" },
-    { url = "https://files.pythonhosted.org/packages/a7/76/aa2f22780342e0b5840c7f6c2a80f321c29b92d055e6feadc486d5abaf2a/tanga_py-0.2.4-py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:db2a22f7a79605b2fe830a111e860bf3ea5df61e69a257d808e26f5386bf4c4b", size = 1635759, upload-time = "2026-08-02T15:46:46.429Z" },
+    { url = "https://files.pythonhosted.org/packages/8b/2f/bbaae05a45a8b999331a3f7a1f9eb8c97dabae759dc5ec41bf73f50d140d/tanga_py-0.11.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:e62dd21d0f7da2671a67dd05c5f3db58071d0ea8d2555cf2ed034b52588e1266", size = 2096458, upload-time = "2026-08-20T06:04:19.602Z" },
+    { url = "https://files.pythonhosted.org/packages/eb/5c/42b82293974c574d2399aed21d3052d5184aa20430e9d1ecd8fed9190a37/tanga_py-0.11.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:fafb30ffbb09377ae9185d4f29771eb26c489d47e2c4c4de9637bd84a7ff4d5d", size = 2408351, upload-time = "2026-08-20T06:04:21.416Z" },
+    { url = "https://files.pythonhosted.org/packages/32/62/3303a966f1023fe00b8ad229be5d641362312c90935922bd9fae62154e7a/tanga_py-0.11.0-cp312-cp312-win_amd64.whl", hash = "sha256:6a924e406a7585a7dc83369cd28828f06a6c1168a57a78f5b2fa94390ce02d54", size = 2148686, upload-time = "2026-08-20T06:04:23.696Z" },
+    { url = "https://files.pythonhosted.org/packages/cf/db/c44f335eb4c68842f8f87c5468d89640f368f7e4f654e5040291aa3e10e6/tanga_py-0.11.0-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:269727c799547ea0a2bd823ec4367812b97e48a8a07c5dd480ea52a7e1342ba4", size = 2096778, upload-time = "2026-08-20T06:04:25.46Z" },
+    { url = "https://files.pythonhosted.org/packages/8b/49/19a5ff14be986a9d08ee5b14807292ac506f833c204e57dd9a8eb5df639a/tanga_py-0.11.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:b0048896350cebbf16f275aeb3180d9552cb44dda48577a5881d4f781d35230b", size = 2408784, upload-time = "2026-08-20T06:04:26.971Z" },
+    { url = "https://files.pythonhosted.org/packages/d9/54/7171c2c97e51a8d1f71f4fdcc6539b035e1d59db5f9f274828b50ccb1d48/tanga_py-0.11.0-cp313-cp313-win_amd64.whl", hash = "sha256:09fcf8cc7546014df892352457ecfd6e4f972ba8269b0d6fc2e12a7121d65fb9", size = 2148887, upload-time = "2026-08-20T06:04:28.524Z" },
+    { url = "https://files.pythonhosted.org/packages/dd/36/ed61bfa030f11087df0c6d2cd6f178708a25c7da16ada5d5549dcd983448/tanga_py-0.11.0-py3-none-any.whl", hash = "sha256:40892dcc52765220cfb5740ec4e96481178b561686a6a10ad640f34938584c43", size = 846783, upload-time = "2026-08-20T06:04:29.817Z" },
 ]
 
 [package.optional-dependencies]
@@ -2084,27 +2089,24 @@ name = "tanga-tutorial"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "tanga-py", extra = ["compile", "examples"] },
-]
-
-[package.dev-dependencies]
-dev = [
     { name = "ipykernel" },
     { name = "ipython" },
     { name = "jupyter" },
     { name = "scipy" },
+    { name = "tanga-py", extra = ["compile", "examples"] },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "tanga-py", extras = ["compile", "examples"], specifier = ">=0.2.4" }]
-
-[package.metadata.requires-dev]
-dev = [
+requires-dist = [
     { name = "ipykernel", specifier = ">=6.29" },
     { name = "ipython", specifier = ">=8.30" },
     { name = "jupyter", specifier = ">=1.0" },
     { name = "scipy", specifier = ">=1.13" },
+    { name = "tanga-py", extras = ["compile", "examples"], specifier = ">=0.11.0" },
 ]
+
+[package.metadata.requires-dev]
+dev = []
 
 [[package]]
 name = "terminado"
