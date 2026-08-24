@@ -18,7 +18,7 @@ plan.
 - Create algebras from a **basis class** (e.g. `E3 = BasisE3()`,
   `PGA = BasisPGA3()`) rather than the generic `Algebra(dim, sig, dtype)`
   constructor. The generic `Algebra` class is introduced in
-  [Tutorial 3](#3-algebra-and-multivectors--the-core) and reserved for custom
+  [Tutorial 2](#2-algebra-and-multivectors--the-core) and reserved for custom
   algebras (see [Tutorial 16](#16-custom-algebras-and-advanced-patterns)).
 - **Geometric entities and operators are created through the `pytanga.geometry`
   submodule**, not on the basis classes. The recommended pattern is the
@@ -56,15 +56,17 @@ covers the topic in full. For a tour of the viewer itself, see
 Sections:
 
 - **Algebra & Multivectors** — Create an algebra, build multivectors from strings,
-  compute the geometric product, inner product and outer product, extract grades. add a tabel of all available GA operations and how to excute them in pytanga → [Tutorial 3](#3-algebra-and-multivectors--the-core)
+  compute the geometric product, inner product and outer product, extract grades. add a tabel of all available GA operations and how to excute them in pytanga → [Tutorial 2](#2-algebra-and-multivectors--the-core)
 - **Basis Classes** — Use `BasisE3` and `BasisPGA3` for named blades; glimpse the 2D
-  basis classes. → [Tutorial 4](#4-the-eight-basis-classes)
+  basis classes. → [Tutorial 3](#3-the-eight-basis-classes)
 - **Rotors & Motions** — Build a rotor with the geometry submodule's `Rotor` and rotate
-  a vector with the sandwich product. → [Tutorial 5](#5-euclidean-3d-g30--vectors-bivectors-rotors)
+  a vector with the sandwich product. → [Tutorial 4](#4-euclidean-3d-g30--vectors-bivectors-rotors)
+- **Expressions** — Build symbolic `Variable`s and `Expression`s, evaluate and batch
+  them, and solve with `inv()`/`lstsq()`. → [Tutorial 14](#14-expression-system--variables-and-symbolic-equations)
 - **Geometry Submodule** — Create a `Point`, `Line`, and `Sphere` with the `Geometry`
   convenience class; round-trip with `analyze()`. → [Tutorial 15](#15-geometry-submodule--algebra-independent-entities)
 - **Equation Solving** — Solve `A * X = B` for an unknown multivector with `solve()`. →
-  [Tutorial 12](#12-equation-solving--from-ga-to-linear-systems)
+  [Tutorial 11](#11-equation-solving--from-ga-to-linear-systems)
 
 **Visual Examples:** Use `pytanga.viz.Visualizer` to render conformal-algebra
 (`BasisN3`) entities — a sphere with its center and radius, a circle as a
@@ -201,13 +203,15 @@ explain the Visualizer API; reference [Part II](../viz/tutorial_overview.md).
 
 **Abstract:** Deep dive into `BasisPGA3`. Explain the single-null-vector embedding used
 in PGA3 (related to N3 but with a single `e0` with `e0² = 0`). Build points, lines, and
-planes as blades. Demonstrate the `join()` and `meet()` blade operations — e.g. the
-meet of two planes is their intersection line and the meet of three planes is their
-intersection point — and contrast them with the outer/inner product. Construct Euclidean
+planes as blades. Demonstrate the `join()` and `meet()` blade operations — the meet
+of two planes is their intersection line and the meet of three planes is their
+intersection point, while the join of two points is the line through them and the
+join of a line and a point is their spanning plane — and contrast them with the
+outer/inner product. Incidence is `A.dual() ^ B.dual() == 0`. Construct Euclidean
 motions — translators, rotors, and motors — and
 apply them to entities via the sandwich product. Show how PGA3 unifies rotations,
 translations, and reflections in a single algebraic framework. Demonstrate the
-Gunn/Dorst null embedding (`e0`, `e0_inv`) and construct entities and motions through
+Gunn/Dorst null embedding (`e0`, `e0_recip`) and construct entities and motions through
 the `pytanga.geometry` submodule.
 
 **Visual Examples:** Produce standalone HTML figures via `pytanga.viz.Visualizer`
@@ -305,7 +309,29 @@ per-element computation along a labelled axis.
 
 ---
 
-## 14. Geometry Submodule — Algebra-Independent Entities
+## 14. Expression System — Variables and Symbolic Equations
+
+**Format:** Jupyter notebook
+
+**Abstract:** Cover the `pytanga.expression` symbolic layer for composing GA equations
+where only a few elements change (animation, optimization, fitting). Introduce
+`Variable` (a named slot with a fixed `BladeMask`), `Expression` (a reduced product
+tensor — one axis per variable occurrence plus one output axis — built by combining
+variables with constants or other variables via the geometric `*`, inner `|`, and
+outer `^` products), and `AffineExpression` (a sum of `Expression` terms that could
+not be merged). Show building (`v * a`, `v | a`, `v ^ a`, `v * w`, scalar scale,
+repeated `v * v`), evaluation and binding (`e(V1=x)`, batched `e(V1=[x0, x1])`,
+nested cross-product batching, counting-axis labels via `(label, list)`), partial
+evaluation → Jacobians, `+`/`-` term merging, involutions (`~e`, `e.conj()`),
+`inv(name)`, `lstsq(rhs=...)`, `svd()`, and the `.tensor` attribute. Note the limits:
+`MAX_DEGREE` (4) repeated occurrences per term, ~12 live variables per process, and
+read-only stacked partial expressions. Point to the `py/examples/expression/` scripts
+(`equation_demo.py`, `polynomial_demo.py`, `line_fitting_p3.py`, `variable_rotor.py`,
+`solve_ax_b.py`, `variable_rotor_entity.py`).
+
+---
+
+## 15. Geometry Submodule — Algebra-Independent Entities
 
 **Format:** Jupyter notebook
 
@@ -313,7 +339,9 @@ per-element computation along a labelled axis.
 (`Point`, `Direction`, `Line`, `Plane`, `Circle`, `Sphere`, `PointPair`, `Space`,
 `ImagCircle`, `ImagSphere`, `ImagPointPair`) and operator types (`ReflectionPlane`
 (alias `Reflection`), `ReflectionLine`, `ReflectionPoint`, `Inversion`, `Rotor`,
-`Translator`, `Dilator`, `Motor`, `GeneralRotor`). Show the entity/operator coverage
+`Translator`, `Dilator`, `Motor`, `GeneralRotor`). Note that `Motor` is normalized to
+a screw form — a `GeneralRotor` about a displaced axis plus an axial `Translator` — so
+`analyze(motor)` returns a `GeneralRotor`. Show the entity/operator coverage
 matrices across all eight algebras (E3, P3, PGA3, N3, E2, P2, PGA2, N2). Present the
 `Geometry` convenience class as the recommended pattern — bind an algebra once (with an
 optional `seed` for reproducible random generation) and call `geo(entity)` /
@@ -345,7 +373,7 @@ Visualizer API; reference [Part II](../viz/tutorial_overview.md).
 
 ---
 
-## 15. Custom Algebras and Advanced Patterns
+## 16. Custom Algebras and Advanced Patterns
 
 **Format:** Jupyter notebook
 
@@ -358,7 +386,7 @@ template engine behind the scenes.
 
 ---
 
-## 16. Visualizing Algebra Entities
+## 17. Visualizing Algebra Entities
 
 **Format:** Jupyter notebook
 
@@ -367,7 +395,9 @@ template engine behind the scenes.
 directions, lines, planes, spheres, circles, point pairs, rotors, translators, motors,
 and reflections — into `pytanga.viz.Visualizer`, and show how raw multivectors are
 analyzed on the way into the viewer (honoring the algebra's `opns` flag). The focus
-here is on *what* each GA object looks like and how to map it to the viewer. The
+here is on *what* each GA object looks like and how to map it to the viewer. Note
+that `GeneralRotor` renders like `Rotor` displaced to its origin, and `Motor` renders
+a displaced rotation plus a translation arrow along the screw axis. The
 viewer's general tooling — scenes, axes/grid/camera, labels, interaction, animation,
 and export — lives in [Part II](../viz/tutorial_overview.md); that part also contains a
 basic introduction to visualizing GA entities and operators for readers who skipped
