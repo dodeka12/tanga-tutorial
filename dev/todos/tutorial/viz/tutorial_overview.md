@@ -54,8 +54,8 @@ Sections:
   [Chapter 7](#7-labels-titles-and-annotations)
 - **Interaction** — Make objects clickable and draggable with the pointer-event
   system. → [Chapter 8](#8-object-interaction-and-active-objects)
-- **Animation** — Animate entities with `Visualizer.animate()`, `PointPath`, `animate_to`,
-  and `Timeline`. → [Chapter 9](#9-animation)
+- **Animation** — Animate entities with `Visualizer.animate()` (call `show()` first),
+  `PointPath`, `animate_to`, and `Timeline`. → [Chapter 9](#9-animation)
 - **Export** — Export self-contained HTML, PNG screenshots, and MP4 video. →
   [Chapter 10](#10-export-and-publishing)
 
@@ -71,10 +71,15 @@ the full visualization tutorials cover. Export via `export_snapshot()`.
 
 **Abstract:** Create a `Visualizer` (3D by default; 2D with `space_dim=2`), add a few
 plain entities (`Point`, `Line`, `Sphere`) via `add()`, and open the interactive
-Three.js viewer with `show()` + `wait()`. Cover the two run modes — blocking
-`show()`/`wait()` vs non-blocking `start_server()`/`flush()`/`stop_server()` — plus
-browser tab reuse (`reuse_existing`), `wait_for_browser`, and the `Ctrl+S` screenshot
-shortcut.
+Three.js viewer with `show()` — the single display entry point. `show()` accepts a
+`jupyter` option (`None` auto-detects, `True` forces inline notebook display, `False`
+forces a browser tab). Cover the two run modes — blocking `show()`/`wait()` vs
+non-blocking `start_server()`/`flush()`/`stop_server()` — plus browser tab reuse
+(`reuse_existing`), `wait_for_browser`, and the `Ctrl+S` screenshot shortcut. For
+inline Jupyter output use `display()`, which (like `show()`) is idempotent within a
+cell — repeated calls flush into the already-open viewer, keyed by `viewer_name`, the
+cell id, or the scene name — and prints a hint to call `start_server()` when invoked
+before the server is running.
 
 ---
 
@@ -83,11 +88,15 @@ shortcut.
 **Format:** Jupyter notebook
 
 **Abstract:** Work with scenes. Add to the main scene, create named scenes with
-`viz.scene(name)`, and manage each through `VizSceneHandle`. Cover multi-scene URLs,
-browser navigation (`navigate_to()`), `list_browsers()`, viewer identity
-(`?viewer=` URL parameter), and side-by-side Jupyter display with `display_row()`.
-Cover the scene lifecycle (`add`, `update`, `remove`, `clear`, `flush`) and the
-`update_style()` method for changing style properties without rebuilding geometry.
+`viz.scene(name)`, and manage each through `VizSceneHandle`. Cover the scene context
+managers — `with viz:` and `with viz.scene("name"):` (reset the scene, `show()` on
+entry, flush on exit) — plus multi-scene URLs, browser navigation (`navigate_to()`),
+`list_browsers()`, viewer identity (`?viewer=` URL parameter), and side-by-side
+Jupyter display with `display_row()`. Cover the scene lifecycle (`add`, `update`,
+`remove`, `clear`, `flush`) and the `update_style()` method for changing style
+properties without rebuilding geometry. Cover the opt-in browser full-server stop key
+via `enable_server_stop_key()` (default Ctrl+Q) and
+`viz.scene(name, enable_server_stop_key=True)`.
 
 ---
 
@@ -97,7 +106,8 @@ Cover the scene lifecycle (`add`, `update`, `remove`, `clear`, `flush`) and the
 
 **Abstract:** Organize scenes as node hierarchies. Build parent/child hierarchies with
 `VizGroup` (empty `THREE.Group` nodes) and create entities inside groups with
-`viz.new(...)` / `group.new(...)`. Use the `VizObjectRef` handle to mutate nodes by
+`viz.new(...)` / `group.new(...)` — or the callable `viz(...)` shorthand for `new()`,
+which returns a `VizObjectRef`. Use the `VizObjectRef` handle to mutate nodes by
 reference — replace `.entity`, adjust `.style` / `.color` / `.opacity`, and manage
 labels via `.label_ids` / `.labels` / `update_label()`. Cover per-object transforms
 (`translate`, `rotate`, `scale_by`, `set_transform`) and operator-based `transform`
@@ -179,7 +189,10 @@ drag/interaction patterns.
 **Abstract:** Animate geometric constructions. Drive scripted animations with the
 `Visualizer.animate()` frame loop (a generator that yields once per frame, paces to a
 target `fps`, and stops cleanly on exit), updating entities in place via the `content`
-aspect. Use `PointPath` for connected line segments, object trails, per-point colors,
+aspect. `animate()` no longer opens the viewer — call `show()` first (or use
+`with viz:`); for per-frame `add()` calls that should not accumulate, pass
+`animate(auto_clear=True)` (each frame flushes, then removes objects added after the
+loop began). Use `PointPath` for connected line segments, object trails, per-point colors,
 and FIFO capping with gradient utilities; keyframe tweening with `animate_to`; and the
 scene-aware `Timeline` sequencer for choreographed multi-entity animations (fade-in,
 move, rotate). Build an interactive `VisualizerApp` subclass with sliders, dropdowns,
@@ -194,7 +207,8 @@ buttons, and layout groups.
 **Abstract:** Export visualizations for sharing and publication. Generate
 self-contained HTML files with `export_snapshot()` (with the embedded JS animation
 engine), embeddable HTML / presentation figures with `export_figure()` and
-`FigureStyle`, and glTF/GLB with `export_glb()`. Cover PNG screenshots (programmatic)
+`FigureStyle`, and glTF/GLB with `export_glb()` (the glTF/GLB entry point — there is no
+`export_gltf`). Cover PNG screenshots (programmatic)
 and MP4 video capture (still on the deprecated `SceneExporter`), the inline
 `display_snapshot()` and standalone `open_snapshot()` previews, animated export via
 `export_snapshot(..., animation=rec)` / `export_figure(..., animation=rec)` with
@@ -211,7 +225,10 @@ and the `FigureConfig`/`export_figure()` pipeline for embedding in presentations
 **Abstract:** A basic bridge from visualization to geometric algebra. Show how raw
 multivectors are accepted by `add()` and analyzed into entities on the way in (honoring
 the algebra's `opns` flag), and how operators (`Rotor`, `Translator`, `Motor`,
-`Reflection`, `Inversion`, `Dilator`) are rendered. This chapter intentionally stays
+`Reflection`, `Inversion`, `Dilator`) are rendered: `GeneralRotor` renders with the
+same rotor visualization as `Rotor` (disc arc, torus, and axis line) displaced to its
+origin, and `Motor` renders a displaced rotation (general rotor) plus a translation
+arrow along the screw axis. This chapter intentionally stays
 high-level: it describes *what* gets drawn and how to point it at the viewer. For the
 meaning of the underlying blades, the OPNS/IPNS distinction, and how to construct
 entities/operators, see

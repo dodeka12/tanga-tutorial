@@ -63,8 +63,9 @@ tutorials/
 │   ├── 11_equation_solving/
 │   ├── 12_matrix/
 │   ├── 13_tensor/
-│   ├── 14_geometry/
-│   └── 15_custom_algebras/
+│   ├── 14_expression/
+│   ├── 15_geometry/
+│   └── 16_custom_algebras/
 └── visualization/       # Part II — Visualization
     ├── README.md
     ├── 01_quick_tour/
@@ -78,14 +79,15 @@ tutorials/
 - **`algebra/`** — Part I tutorials: the algebra quick tour, installation, the
   algebra/multivector core, the basis classes, the 3D deep dives (E3, P3, N3,
   PGA3), duality, modulus arithmetic, the numerical tooling (BladeMask, solver,
-  matrix, tensor), the geometry submodule, and custom algebras.
+  matrix, tensor), the expression system, the geometry submodule, and custom
+  algebras.
 - **`visualization/`** — Part II tutorials: a viewer quick tour, scenes, labels,
   animation, and export, closed by `06_end_to_end` — a cross-cutting capstone that ties
   algebra, geometry, solving, and visualization together.
 
 > Each subfolder numbers its tutorials from `01` and opens with its own quick tour —
 > `algebra/01_quick_tour` (the algebra) and `visualization/01_quick_tour` (the viewer).
-> `algebra/` keeps its original numbers (`01`–`15`, plus `21_custom_algebras`, the
+> `algebra/` keeps its original numbers (`01`–`16`, plus `21_custom_algebras`, the
 > "Custom Algebras" chapter that still carries its old flat-layout number).
 > `visualization/` restarts at `01`; its old flat-layout numbers `16`–`20` become
 > `02`–`06` after the new `01_quick_tour`. Each folder also carries a `README.md`
