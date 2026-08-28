@@ -102,17 +102,25 @@ python examples/basic_algebra.py
 
 ```bash
 # Start Jupyter in the tutorials directory
-uv run jupyter notebook tutorials/
+uv run jupyter-notebook tutorials/    # classic Notebook
+uv run jupyter-lab tutorials/         # JupyterLab
 ```
+
+> **Windows note:** `uv run jupyter notebook ...` can fail with
+> `program not found` if the `jupyter` dispatcher shim is missing from
+> `.venv\Scripts`. Use `jupyter-notebook` / `jupyter-lab` directly (above), or
+> regenerate the shim with `uv pip install --reinstall jupyter-core`.
 
 The tutorials are split into two parts, each numbered from `01`:
 
-- `tutorials/algebra/` — **Part I · Geometric Algebra & Core** (currently
-  `02_algebra_core`, `03_basis_classes`).
-- `tutorials/visualization/` — **Part II · Visualization** (not yet implemented).
+- `tutorials/algebra/` — **Part I · Geometric Algebra & Core**
+  (`01_quick_tour` … `17_visualizing_algebra_entities`).
+- `tutorials/visualization/` — **Part II · Visualization**
+  (`01_quick_tour` … `19_sdf_viewer`).
 
-Open a notebook (e.g. `tutorials/algebra/02_algebra_core/02_algebra_core.ipynb`) in
-your browser. The full tutorial-series plan lives in `dev/todos/`.
+Open a notebook (e.g. `tutorials/algebra/02_algebra_core/02_algebra_core.ipynb` or
+`tutorials/visualization/01_quick_tour/01_quick_tour.ipynb`) in your browser. The
+full tutorial-series plan lives in `dev/todos/`.
 
 ## Documentation (Jupyter Book v2)
 
@@ -123,14 +131,14 @@ MyST Document Engine — no Sphinx). Configuration lives in the root `myst.yml`.
 
 ```bash
 uv sync --group dev
-uv run jupyter book start       # serves http://localhost:3000 with live reload
+uv run jupyter-book start       # serves http://localhost:3000 with live reload
 ```
 
 The `start` command runs its own dev webserver; no separate static-site server is
 needed. To produce a static HTML build (e.g. for CI checks):
 
 ```bash
-uv run jupyter book build --html --strict
+uv run jupyter-book build --html --strict
 cd _build/html 2>/dev/null || echo "see _build/ for build output"
 ```
 
@@ -143,14 +151,25 @@ server — it does not launch one — so start the Jupyter server **first** (in 
 separate terminal):
 
 ```bash
-# Terminal 1 — the book
-uv run jupyter book start
+# Terminal 1 — the book (all platforms)
+uv run jupyter-book start
+```
 
-# Terminal 2 — the local Jupyter kernel server
+**Linux / macOS** — Terminal 2 (kernel server):
+
+```bash
 uv run scripts/serve-local.sh
 ```
 
-The helper script uses port `8888`, token `tanga-local`, and allows CORS from
+**Windows (PowerShell)** — Terminal 2 (kernel server):
+
+```powershell
+uv run jupyter-lab --no-browser --ServerApp.port=8888 --IdentityProvider.token=tanga-local --ServerApp.allow_origin=http://localhost:3000
+# or, using the helper script:
+# & .\scripts\serve-local.ps1
+```
+
+The helper scripts use port `8888`, token `tanga-local`, and allow CORS from
 `http://localhost:3000` — matching `myst.yml` (`project.jupyter.server` and
 `project.jupyter.kernelName: python3`). Without step 2, pressing the power button
 will fail because there is no kernel server to connect to.
@@ -161,7 +180,7 @@ For the published site, in `myst.yml` uncomment `project.github` and the
 `jupyter: true` line, and comment out the `jupyter.server` block. Then:
 
 ```bash
-uv run jupyter book init --gh-pages   # generates .github/workflows/deploy.yml
+uv run jupyter-book init --gh-pages   # generates .github/workflows/deploy.yml
 ```
 
 Enable **GitHub Pages → Source: GitHub Actions** in the repository settings. Live

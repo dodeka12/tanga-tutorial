@@ -5,9 +5,10 @@ library.
 
 This book walks through the **pytanga** Python package in two parts:
 
-- **Part I — Geometric Algebra & Core** covers the `Algebra` and `MV` types,
-  the basis classes, the geometry submodule, and the numerical tooling.
-- **Part II — Visualization** teaches the `pytanga.viz` viewer from scratch.
+- **Visualization** — teaches the `pytanga.viz` viewer from scratch, no
+  geometric-algebra background required.
+- **Geometric Algebra & Core** — covers the `Algebra` and `MV` types, the
+  basis classes, the geometry submodule, and the numerical tooling.
 
 ## Conventions
 
@@ -27,4 +28,6 @@ Jupyter server, letting you run the cells in place. See the
 ## Where to start
 
 Use the navigation on the left, or begin with the
+[Visualization quick tour](tutorials/visualization/01_quick_tour/01_quick_tour.ipynb).
+For the underlying geometric algebra, start with the
 [Algebra quick tour](tutorials/algebra/01_quick_tour/01_quick_tour.ipynb).

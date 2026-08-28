@@ -38,6 +38,27 @@ project:
     - file: index.md
     - title: Tutorials
       children:
+        - title: Visualization
+          children:
+            - file: tutorials/visualization/01_quick_tour/01_quick_tour.ipynb
+            - file: tutorials/visualization/02_getting_started/02_getting_started.ipynb
+            - file: tutorials/visualization/03_sdf_objects/03_sdf_objects.ipynb
+            - file: tutorials/visualization/04_multi_scene/04_multi_scene.ipynb
+            - file: tutorials/visualization/05_scene_graphs/05_scene_graphs.ipynb
+            - file: tutorials/visualization/06_styles_colors/06_styles_colors.ipynb
+            - file: tutorials/visualization/07_axes_grid_camera/07_axes_grid_camera.ipynb
+            - file: tutorials/visualization/08_coordinate_system/08_coordinate_system.ipynb
+            - file: tutorials/visualization/09_labels/09_labels.ipynb
+            - file: tutorials/visualization/10_interaction/10_interaction.ipynb
+            - file: tutorials/visualization/11_animation/11_animation.ipynb
+            - file: tutorials/visualization/12_split_views/12_split_views.ipynb
+            - file: tutorials/visualization/13_visualizer_app/13_visualizer_app.ipynb
+            - file: tutorials/visualization/14_controls/14_controls.ipynb
+            - file: tutorials/visualization/15_banners_dialogs/15_banners_dialogs.ipynb
+            - file: tutorials/visualization/16_responsive_computation/16_responsive_computation.ipynb
+            - file: tutorials/visualization/17_export/17_export.ipynb
+            - file: tutorials/visualization/18_ga_entities/18_ga_entities.ipynb
+            - file: tutorials/visualization/19_sdf_viewer/19_sdf_viewer.ipynb
         - title: Algebra
           children:
             - file: tutorials/algebra/01_quick_tour/01_quick_tour.ipynb
@@ -47,5 +68,6 @@ project:
             - file: tutorials/algebra/05_projective_p3/05_projective_p3.ipynb
             - file: tutorials/algebra/06_conformal_n3/06_conformal_n3.ipynb
             - file: tutorials/algebra/07_pga3/07_pga3.ipynb
+            - file: tutorials/algebra/08_duality/08_duality.ipynb
 site:
   template: book-theme
