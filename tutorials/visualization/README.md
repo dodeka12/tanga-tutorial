@@ -37,7 +37,7 @@ Visualization inputs are drawn from `pytanga.geometry` dataclasses (`Point`,
 
 ## Prerequisites
 
-- **Part II — Geometric Algebra & Core** (`../algebra/`) is *not* required to
+- **Part II — Geometric Algebra** (`../algebra/`) is *not* required to
   follow this part; the GA-entities bridge (tutorial 18) is the only place that
   touches multivectors, and it defers the theory to Part II.
 - Python 3.10+ with `pytanga` and `aiohttp` installed. Three.js, KaTeX, and

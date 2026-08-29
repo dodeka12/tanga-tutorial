@@ -113,9 +113,9 @@ uv run jupyter-lab tutorials/         # JupyterLab
 
 The tutorials are split into two parts, each numbered from `01`:
 
-- `tutorials/algebra/` — **Part I · Geometric Algebra & Core**
+- `tutorials/algebra/` — **Part II · Geometric Algebra**
   (`01_quick_tour` … `17_visualizing_algebra_entities`).
-- `tutorials/visualization/` — **Part II · Visualization**
+- `tutorials/visualization/` — **Part I · Visualization**
   (`01_quick_tour` … `19_sdf_viewer`).
 
 Open a notebook (e.g. `tutorials/algebra/02_algebra_core/02_algebra_core.ipynb` or
@@ -199,8 +199,8 @@ execution then runs on Binder, which builds its environment from a root
 │   ├── pga3_intro.py        # PGA3 projective geometry intro
 │   └── pga3_visualizer.py   # PGA3 viewer demo
 ├── tutorials/           # Jupyter notebooks
-│   ├── algebra/             # Part I — Geometric Algebra & Core
-│   └── visualization/       # Part II — Visualization
+│   ├── algebra/             # Part II — Geometric Algebra
+│   └── visualization/       # Part I — Visualization
 ├── dev/todos/           # Tutorial-series plans
 ├── .dep-docs/           # Upstream pytanga documentation
 ├── .dep-examples/       # Upstream pytanga examples
