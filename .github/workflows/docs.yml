@@ -78,21 +78,23 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Install Python toolchain
-        run: uv sync --group dev
-
       - name: Resolve version
         id: version
         run: |
           if [ "${{ github.event_name }}" = "push" ]; then
             VERSION="${{ needs.version-bump.outputs.version }}"
-            git fetch origin tag "$VERSION"
           else
             VERSION=$(git tag -l 'v*' --sort=-v:refname | grep -v '\-rc' | head -1)
             VERSION=${VERSION:-latest}
           fi
+          # Ensure the bumped tag is present locally BEFORE building, so
+          # hatch-vcs (during `uv sync`) and mike both see the final version.
+          git fetch origin tag "$VERSION" 2>/dev/null || true
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Deploying version: $VERSION"
+
+      - name: Install Python toolchain
+        run: uv sync --group dev
 
       - name: Deploy docs with mike
         env:
