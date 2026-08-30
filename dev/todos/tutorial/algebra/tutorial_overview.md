@@ -1,4 +1,4 @@
-# TanGA Tutorial Series — Part I: Geometric Algebra & Core
+# TanGA Tutorial Series — Part II: Geometric Algebra & Core
 
 This plan covers the geometric-algebra foundation of **pytanga**: the `Algebra`
 and `MV` types, the eight basis classes, the geometry submodule, the numerical
@@ -6,14 +6,14 @@ building blocks (solver, matrix, tensor, blade mask), and a closing chapter on
 visualizing algebra entities with `pytanga.viz`.
 
 It is the first of two tutorial parts. The companion plan,
-[Part II — Visualization](../viz/tutorial_overview.md), teaches the viewer from
+[Part I — Visualization](../viz/tutorial_overview.md), teaches the viewer from
 scratch (no geometric-algebra background required) and contains only a basic
 introduction to visualizing GA entities, deferring the GA detail back to this
 plan.
 
 ---
 
-## Conventions (shared with Part II)
+## Conventions (shared with Part I)
 
 - Create algebras from a **basis class** (e.g. `E3 = BasisE3()`,
   `PGA = BasisPGA3()`) rather than the generic `Algebra(dim, sig, dtype)`
@@ -51,7 +51,7 @@ plan.
 only. Glance at each major algebra area — not to master it, but to see the big picture
 and know where to dive deeper. Each section ends with a reference to the tutorial that
 covers the topic in full. For a tour of the viewer itself, see
-[Part II](../viz/tutorial_overview.md).
+[Part I](../viz/tutorial_overview.md).
 
 Sections:
 
@@ -72,7 +72,7 @@ Sections:
 (`BasisN3`) entities — a sphere with its center and radius, a circle as a
 sphere–sphere intersection, and a point pair — giving an immediate, visual sense of
 what the conformal model produces. Export via `export_snapshot()`. Do not explain the
-Visualizer API; reference [Part II](../viz/tutorial_overview.md).
+Visualizer API; reference [Part I](../viz/tutorial_overview.md).
 
 ---
 
@@ -128,7 +128,7 @@ in 2D results in a circle). E2 has no points — only directions and rotors.
 comparing a common geometric object (e.g. a point and a line) across the four 3D
 algebras, and a second figure showing the 2D counterparts with
 `Visualizer(space_dim=2)`. Do not explain the Visualizer API in detail; reference
-[Part II](../viz/tutorial_overview.md) for setup instructions.
+[Part I](../viz/tutorial_overview.md) for setup instructions.
 
 ---
 
@@ -148,7 +148,7 @@ and the correspondence between bivectors and rotation planes.
 illustrating key concepts — vectors and their outer-product bivector as an oriented
 plane, the cross product as the Hodge dual of the outer product, and a rotor applied
 to a vector with before/after comparison. Do not explain the Visualizer API in detail;
-reference [Part II](../viz/tutorial_overview.md) for setup instructions.
+reference [Part I](../viz/tutorial_overview.md) for setup instructions.
 
 ---
 
@@ -169,7 +169,7 @@ entities. Note that translation goes through the geometry pipeline
 **Visual Examples:** Produce standalone HTML figures via `pytanga.viz.Visualizer`
 showing a P3 point, a P3 line (as a bivector), and a plane in projective space. Use
 `export_snapshot()` to export self-contained HTML. Do not explain the Visualizer API;
-reference [Part II](../viz/tutorial_overview.md).
+reference [Part I](../viz/tutorial_overview.md).
 
 ---
 
@@ -193,7 +193,7 @@ of a sphere, a circle (as sphere–sphere intersection), a point pair, an imagin
 circle (`ImagCircle` — dotted wireframe, dual of a real point pair), an imaginary
 sphere (`ImagSphere`), and the effect of applying a dilator (scaling) and a
 translator (displacement). Output self-contained HTML via `export_snapshot()`. Do not
-explain the Visualizer API; reference [Part II](../viz/tutorial_overview.md).
+explain the Visualizer API; reference [Part I](../viz/tutorial_overview.md).
 
 ---
 
@@ -219,7 +219,7 @@ showing a plane, a line (intersection of two planes via `meet()`), a point (inte
 of three planes via `meet()`), and a motor applied to a point (combined rotation +
 translation). Export
 self-contained HTML via `export_snapshot()`. Do not explain the Visualizer API; reference
-[Part II](../viz/tutorial_overview.md).
+[Part I](../viz/tutorial_overview.md).
 
 ---
 
@@ -227,10 +227,12 @@ self-contained HTML via `export_snapshot()`. Do not explain the Visualizer API; 
 
 **Format:** Jupyter notebook
 
-**Abstract:** Cover the three dual/conjugate operations in pytanga: the unsigned
-bitwise complement (`~MV`), the signed Clifford dual (`MV.dual()`), and the left dual
+**Abstract:** Cover the dual/conjugate operations in pytanga: the unsigned bitwise
+complement (`MV.complement()`), the signed Clifford dual (`MV.dual()`), its inverse the right
+dual (`MV.undual()`, satisfying `dual(undual(A)) == A`), and the left dual
 (`MV.ldual()`). Explain the mathematical meaning of each, when to use each one, and
-how they interact across the eight basis algebras. Include practical use cases: mapping
+how they interact across the eight basis algebras (including the Hodge-star sign
+conventions fixed for `BasisPGA3`/`BasisPGA2`). Include practical use cases: mapping
 between IPNS and OPNS, computing the regressive product via duality, and extracting
 normals/orthogonal complements.
 
@@ -238,11 +240,11 @@ normals/orthogonal complements.
 illustrating the geometric meaning of duality: a bivector (oriented plane) and its
 Hodge dual vector (normal direction), and the IPNS/OPNS duality of a sphere in N3.
 Export self-contained HTML via `export_snapshot()`. Do not explain the Visualizer API;
-reference [Part II](../viz/tutorial_overview.md).
+reference [Part I](../viz/tutorial_overview.md).
 
 ---
 
-## 9. Modulus Arithmetic with Integer Algebras
+## 9. Modulus Arithmetic with Integer Algebras ✅
 
 **Format:** Jupyter notebook
 
@@ -254,7 +256,7 @@ discuss use cases in cryptography and exact symbolic computation.
 
 ---
 
-## 10. BladeMask — Labelling Subspaces
+## 10. BladeMask — Labelling Subspaces ✅
 
 **Format:** Jupyter notebook / Python script
 
@@ -268,7 +270,7 @@ different algebras cannot be mixed. Show how to derive `product_blade_mask` and
 
 ---
 
-## 11. Equation Solving — From GA to Linear Systems
+## 11. Equation Solving — From GA to Linear Systems ✅
 
 **Format:** Jupyter notebook
 
@@ -282,7 +284,7 @@ and whether involutions are applied.
 
 ---
 
-## 12. Matrix Operations — Multivectors Meet NumPy
+## 12. Matrix Operations — Multivectors Meet NumPy ✅
 
 **Format:** Jupyter notebook
 
@@ -295,7 +297,7 @@ encodes any GA product as a linear map.
 
 ---
 
-## 13. Tensor Operations — Labelled Einsum for Multivectors
+## 13. Tensor Operations — Labelled Einsum for Multivectors ✅
 
 **Format:** Jupyter notebook
 
@@ -309,7 +311,7 @@ per-element computation along a labelled axis.
 
 ---
 
-## 14. Expression System — Variables and Symbolic Equations
+## 14. Expression System — Variables and Symbolic Equations ✅
 
 **Format:** Jupyter notebook
 
@@ -331,7 +333,7 @@ read-only stacked partial expressions. Point to the `py/examples/expression/` sc
 
 ---
 
-## 15. Geometry Submodule — Algebra-Independent Entities
+## 15. Geometry Submodule — Algebra-Independent Entities ✅
 
 **Format:** Jupyter notebook
 
@@ -362,18 +364,25 @@ be created in E3, P3, N3, PGA3, or their 2D counterparts.
 internally by the visualizer and `PointPath` for trails and FIFO-capped paths. It
 exposes its own analyzer/constructor (`analyze_hpoint`, `HPoint(mv)`). Its
 visualization-oriented uses are the only reason it exists; it is introduced in
-[Part II — Animation](../viz/tutorial_overview.md) when discussing `PointPath`.
+[Part I — Animation](../viz/tutorial_overview.md) when discussing `PointPath`.
+
+**Note on viz-only entities:** `pytanga.geometry` also carries rendering-only
+dataclasses — `Cylinder`, `Arc`, `Disk`, `PartialDisk`, `Box`, `Ellipsoid`, `Ellipse`,
+and `RegularPolygon` (via the `regular_polygon()` factory) — which have **no**
+multivector representation (no `create()`/`analyze()` round-trip) and exist purely as
+visualization hints. They are covered in
+[Part I — Styles and Colors](../viz/tutorial_overview.md).
 
 **Visual Examples:** Use `pytanga.viz.Visualizer` to produce standalone HTML figures
 of each entity type created via `geo()` and fed to the Visualizer. Show
 round-trip validation: create an MV from a geometry entity, re-analyze it with
 `geo.analyze()`, and verify the resulting entity matches the original — all visually
 confirmed in 3D. Export self-contained HTML via `export_snapshot()`. Do not explain the
-Visualizer API; reference [Part II](../viz/tutorial_overview.md).
+Visualizer API; reference [Part I](../viz/tutorial_overview.md).
 
 ---
 
-## 16. Custom Algebras and Advanced Patterns
+## 16. Custom Algebras and Advanced Patterns ✅
 
 **Format:** Jupyter notebook
 
@@ -386,7 +395,7 @@ template engine behind the scenes.
 
 ---
 
-## 17. Visualizing Algebra Entities
+## 17. Visualizing Algebra Entities ✅
 
 **Format:** Jupyter notebook
 
@@ -399,6 +408,6 @@ here is on *what* each GA object looks like and how to map it to the viewer. Not
 that `GeneralRotor` renders like `Rotor` displaced to its origin, and `Motor` renders
 a displaced rotation plus a translation arrow along the screw axis. The
 viewer's general tooling — scenes, axes/grid/camera, labels, interaction, animation,
-and export — lives in [Part II](../viz/tutorial_overview.md); that part also contains a
+and export — lives in [Part I](../viz/tutorial_overview.md); that part also contains a
 basic introduction to visualizing GA entities and operators for readers who skipped
 this plan.

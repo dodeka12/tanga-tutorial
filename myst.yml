@@ -38,7 +38,30 @@ project:
     - file: index.md
     - title: Tutorials
       children:
-        - title: Algebra
+        - title: Visualization
+          children:
+            - file: tutorials/visualization/01_quick_tour/01_quick_tour.ipynb
+            - file: tutorials/visualization/02_use_cases/02_use_cases.ipynb
+            - file: tutorials/visualization/03_jupyter/03_jupyter.ipynb
+            - file: tutorials/visualization/04_getting_started/04_getting_started.ipynb
+            - file: tutorials/visualization/05_sdf_objects/05_sdf_objects.ipynb
+            - file: tutorials/visualization/06_multi_scene/06_multi_scene.ipynb
+            - file: tutorials/visualization/07_scene_graphs/07_scene_graphs.ipynb
+            - file: tutorials/visualization/08_styles_colors/08_styles_colors.ipynb
+            - file: tutorials/visualization/09_axes_grid_camera/09_axes_grid_camera.ipynb
+            - file: tutorials/visualization/10_coordinate_system/10_coordinate_system.ipynb
+            - file: tutorials/visualization/11_labels/11_labels.ipynb
+            - file: tutorials/visualization/12_interaction/12_interaction.ipynb
+            - file: tutorials/visualization/13_animation/13_animation.ipynb
+            - file: tutorials/visualization/14_split_views/14_split_views.ipynb
+            - file: tutorials/visualization/15_visualizer_app/15_visualizer_app.ipynb
+            - file: tutorials/visualization/16_controls/16_controls.ipynb
+            - file: tutorials/visualization/17_banners_dialogs/17_banners_dialogs.ipynb
+            - file: tutorials/visualization/18_responsive_computation/18_responsive_computation.ipynb
+            - file: tutorials/visualization/19_export/19_export.ipynb
+            - file: tutorials/visualization/20_ga_entities/20_ga_entities.ipynb
+            - file: tutorials/visualization/21_sdf_viewer/21_sdf_viewer.ipynb
+        - title: Geometric Algebra
           children:
             - file: tutorials/algebra/01_quick_tour/01_quick_tour.ipynb
             - file: tutorials/algebra/02_algebra_core/02_algebra_core.ipynb
@@ -47,5 +70,15 @@ project:
             - file: tutorials/algebra/05_projective_p3/05_projective_p3.ipynb
             - file: tutorials/algebra/06_conformal_n3/06_conformal_n3.ipynb
             - file: tutorials/algebra/07_pga3/07_pga3.ipynb
+            - file: tutorials/algebra/08_duality/08_duality.ipynb
+            - file: tutorials/algebra/09_modulus/09_modulus.ipynb
+            - file: tutorials/algebra/10_blade_mask/10_blade_mask.ipynb
+            - file: tutorials/algebra/11_equation_solving/11_equation_solving.ipynb
+            - file: tutorials/algebra/12_matrix/12_matrix.ipynb
+            - file: tutorials/algebra/13_tensor/13_tensor.ipynb
+            - file: tutorials/algebra/14_expression/14_expression.ipynb
+            - file: tutorials/algebra/15_geometry/15_geometry.ipynb
+            - file: tutorials/algebra/16_custom_algebras/16_custom_algebras.ipynb
+            - file: tutorials/algebra/17_visualizing_algebra_entities/17_visualizing_algebra_entities.ipynb
 site:
   template: book-theme

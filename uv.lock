@@ -6,9 +6,6 @@ resolution-markers = [
     "python_full_version < '3.14'",
 ]
 
-[options]
-prerelease-mode = "allow"
-
 [[package]]
 name = "aiohappyeyeballs"
 version = "2.7.1"
@@ -579,11 +576,11 @@ wheels = [
 
 [[package]]
 name = "defusedxml"
-version = "0.8.0rc2"
+version = "0.7.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/5e/3b/b8849dcc3f96913924137dc4ea041d74aa513a3c5dda83d8366491290c74/defusedxml-0.8.0rc2.tar.gz", hash = "sha256:138c7d540a78775182206c7c97fe65b246a2f40b29471e1a2f1b0da76e7a3942", size = 52575, upload-time = "2023-09-29T08:01:27.517Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0f/d5/c66da9b79e5bdb124974bfe172b4daf3c984ebd9c2a06e2b8a4dc7331c72/defusedxml-0.7.1.tar.gz", hash = "sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69", size = 75520, upload-time = "2021-03-08T10:59:26.269Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5d/c7/6b4ad89ca6f7732ff97ce5e9caa6fe739600d26c5d53c20d0bf9abb79ec5/defusedxml-0.8.0rc2-py2.py3-none-any.whl", hash = "sha256:1c812964311154c3bf4aaf3bc1443b31ee13530b7f255eaaa062c0553c76103d", size = 25756, upload-time = "2023-09-29T08:01:25.515Z" },
+    { url = "https://files.pythonhosted.org/packages/07/6c/aa3f2f849e01cb6a001cd8554a88d4c77c5c1a31c95bdf1cf9301e6d9ef4/defusedxml-0.7.1-py2.py3-none-any.whl", hash = "sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61", size = 25604, upload-time = "2021-03-08T10:59:24.45Z" },
 ]
 
 [[package]]
@@ -1085,7 +1082,7 @@ wheels = [
 
 [[package]]
 name = "jupyterlab"
-version = "4.7.0a1"
+version = "4.6.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "async-lru" },
@@ -1102,9 +1099,9 @@ dependencies = [
     { name = "tornado" },
     { name = "traitlets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d5/c4/162383f6ca29df45f443f1e821e3455868ef915b529f3f85277e7eb017bb/jupyterlab-4.7.0a1.tar.gz", hash = "sha256:04f5835786330aaee011ae0fe933805588a26c6cd841ff7a0f223850a8b5aec7", size = 28330077, upload-time = "2026-07-21T13:14:02.738Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/00/c0/45934229995d4c6e38192ca118d93185f60808f64157e3df3c5c28f8c5fd/jupyterlab-4.6.3.tar.gz", hash = "sha256:2e3db6e3a12495ebd188276e985bf5ac502fbde3d1e8628819920210008de498", size = 28319771, upload-time = "2026-08-10T18:50:57.947Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d3/f8/d3e3345be04f2abdabc41389560dae44bd44f727e5f60e10a347456ee2a8/jupyterlab-4.7.0a1-py3-none-any.whl", hash = "sha256:19613a4944a60fb27fcfec94f66cb51e2166f413a2906295b16a9b528116c5f7", size = 17319609, upload-time = "2026-07-21T13:13:58.543Z" },
+    { url = "https://files.pythonhosted.org/packages/e9/47/242f46de028074651c9bd6d8000fc340ed0d3cdd1a0eae4387826123413a/jupyterlab-4.6.3-py3-none-any.whl", hash = "sha256:0a1ebc6567186f1eabd99536e94df7ed9e96d1e7c5ddf3e4406ae16e88abacb7", size = 17168312, upload-time = "2026-08-10T18:50:53.044Z" },
 ]
 
 [[package]]
@@ -1457,7 +1454,7 @@ wheels = [
 
 [[package]]
 name = "notebook"
-version = "7.7.0a1"
+version = "7.6.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jupyter-builder" },
@@ -1467,9 +1464,9 @@ dependencies = [
     { name = "notebook-shim" },
     { name = "tornado" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/df/19/ea987c7e1cf36ecb0e9f88da9ff13d966edd81e4f39d9d3c25c42d7bbb1a/notebook-7.7.0a1.tar.gz", hash = "sha256:9b8a15b2de0be8e58df5a58aa23da98f5515d03d2d40a5a4126652a5e697e544", size = 5584256, upload-time = "2026-07-22T11:30:29.043Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/31/d9/5c76de84e96e1cf8aae3fce930875e0615e14f3557bbcdb634aab52da9d3/notebook-7.6.2.tar.gz", hash = "sha256:cc02b5f0bb972160cccfe44ad8a1a202036206ba3439469c514f03aefa9ae807", size = 5500147, upload-time = "2026-08-11T13:21:16.632Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fe/2f/88a1800ee29bc83f7910d9142a881072807efd28a336faf3f862338e1f17/notebook-7.7.0a1-py3-none-any.whl", hash = "sha256:b98fc86140ee9b2ba2a48e4b8e1bef83a0fdd386854c598948632e5282d86016", size = 5624786, upload-time = "2026-07-22T11:30:26.174Z" },
+    { url = "https://files.pythonhosted.org/packages/5c/fd/3e552ff5b24dd305c6e9a10e8645e29c03091c317429f326ae10dbae1ac6/notebook-7.6.2-py3-none-any.whl", hash = "sha256:5fe9e09c335cb4b7de21627b860f77210e70e54b1fb1276ad942a4a7e1d858d3", size = 5547102, upload-time = "2026-08-11T13:21:13.302Z" },
 ]
 
 [[package]]
@@ -2211,21 +2208,21 @@ wheels = [
 
 [[package]]
 name = "tanga-py"
-version = "1.1.0rc2"
-source = { registry = "https://test.pypi.org/simple/" }
+version = "1.9.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
     { name = "numpy" },
     { name = "rich" },
 ]
 wheels = [
-    { url = "https://test-files.pythonhosted.org/packages/f0/6b/a9a9c1e6af26d5e41ab3fda57c2c4f9cf62c2cf059a1f788e08483e08d4c/tanga_py-1.1.0rc2-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:bd8a13eabf2e53c725923b92afe4b8c2d56601480b8d1574ccbb057a49bc0214", size = 2254641, upload-time = "2026-08-24T21:27:48.466Z" },
-    { url = "https://test-files.pythonhosted.org/packages/e9/27/79df97dd3ecfc3a4909a2271e72807497650c59267f6d0dcae3b24db54c3/tanga_py-1.1.0rc2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:786ad78ac923375b13db39754fcca9a3150786ec6440234968ee3dcdc531906f", size = 2574021, upload-time = "2026-08-24T21:27:49.781Z" },
-    { url = "https://test-files.pythonhosted.org/packages/84/01/cb9f66551eadbf9a203c194ac6d7a2f556d8a1c0e35ace674362076d1edb/tanga_py-1.1.0rc2-cp312-cp312-win_amd64.whl", hash = "sha256:a007f95a291fccf9f66c362613f715738a6e854ef2a0012778bab37a6dc72ea4", size = 2308184, upload-time = "2026-08-24T21:27:51.134Z" },
-    { url = "https://test-files.pythonhosted.org/packages/99/e9/aae1eab104268080ba2fbe27ea950a78e9280248494e23498e945fa551d7/tanga_py-1.1.0rc2-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:65c0ae75b7e498d375c559dd7a0357f6a1d1b1e956c525e9a5025ea7802234ee", size = 2254837, upload-time = "2026-08-24T21:27:52.318Z" },
-    { url = "https://test-files.pythonhosted.org/packages/7a/72/38ed148d8b4bf465e795d8fd425bd25ffc223ed64e27014026ff4badc6bf/tanga_py-1.1.0rc2-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:49b075f0b10b54d42243d021e23c968a2e91bc05945143f13392262b2515e3e4", size = 2574821, upload-time = "2026-08-24T21:27:53.463Z" },
-    { url = "https://test-files.pythonhosted.org/packages/12/f3/020a146dd8e078d7950744d105e0bf99d53437390dc6dfce61526f25bfe3/tanga_py-1.1.0rc2-cp313-cp313-win_amd64.whl", hash = "sha256:d0c2cdbf3c359f032322d28dc74f9f469bbf67d1c41758cf198569c8725553bb", size = 2308406, upload-time = "2026-08-24T21:27:54.68Z" },
-    { url = "https://test-files.pythonhosted.org/packages/36/1f/072aff159165e42df575bd2c1901752b39b773224c3910ba93fe2c8b7322/tanga_py-1.1.0rc2-py3-none-any.whl", hash = "sha256:9f4cf9ae3b11373ee4187d242a8ee8f0706f237292d8ba5a86de008e064c2631", size = 989350, upload-time = "2026-08-24T21:27:55.983Z" },
+    { url = "https://files.pythonhosted.org/packages/35/15/dc3c8bbbe7fba1b166b4905d1de43a618c3ce1d1a4a017485ef8aac2ac5c/tanga_py-1.9.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:4381eaad1fff66132e0f856658bbcfcb65db005c1f1312b1eb0042789ea90b5d", size = 2433043, upload-time = "2026-08-27T23:08:41.253Z" },
+    { url = "https://files.pythonhosted.org/packages/c0/eb/4d32a9dba3f9178b21c6bd268d5a13de7a7951974a89b59052986af34128/tanga_py-1.9.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:f304e81647224869260181a8c6d1ebb342e6939ca6d62a64dec44d22bbbf6252", size = 2754862, upload-time = "2026-08-27T23:08:43.097Z" },
+    { url = "https://files.pythonhosted.org/packages/0a/f2/c9a36608558600b5636c2665613f9a5b69b60190996fcf5fb705dd7853d3/tanga_py-1.9.0-cp312-cp312-win_amd64.whl", hash = "sha256:dff95cf4b9bcb70247a6bc56d7e825a1ba5a46390e7eb38552bf4b1359a12b69", size = 2488092, upload-time = "2026-08-27T23:08:44.427Z" },
+    { url = "https://files.pythonhosted.org/packages/25/3b/be98b3bb93f52653f3b4655563b7343818ea959c72be8766d8a479a3b7ab/tanga_py-1.9.0-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:52d456adf858a9b0758b36bf03f49bc88efa8780f33ac5d978b4905975eca2f4", size = 2433239, upload-time = "2026-08-27T23:08:45.897Z" },
+    { url = "https://files.pythonhosted.org/packages/a1/ba/ca51b01828c2d5febb43042c8b31d11016178e05258be9caf04a68073b4b/tanga_py-1.9.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:6d8735690be33c4890c11d82ffa4850f878c6378a4278b734c53df0e29af54a6", size = 2755660, upload-time = "2026-08-27T23:08:47.228Z" },
+    { url = "https://files.pythonhosted.org/packages/56/99/84dd9462967e032bc0c52b1671e2145a8bb7a09c506d6ee416281eb32a35/tanga_py-1.9.0-cp313-cp313-win_amd64.whl", hash = "sha256:3475d95225a7b6fc47d8015a4a67e40296d356758d84d0ae5f4fe8eaed33e55a", size = 2488323, upload-time = "2026-08-27T23:08:49.286Z" },
+    { url = "https://files.pythonhosted.org/packages/91/3e/aa8f0ff086623b3786f813c99d857308d186569c6de1df37b86c8d7a110c/tanga_py-1.9.0-py3-none-any.whl", hash = "sha256:d561c4e4cefdf4ef570cf573c986ea0c52062a95ec9cc3f2f3e2420bbed33308", size = 1167759, upload-time = "2026-08-27T23:08:50.549Z" },
 ]
 
 [package.optional-dependencies]
@@ -2264,7 +2261,7 @@ requires-dist = [
     { name = "ipython", specifier = ">=8.30" },
     { name = "jupyter", specifier = ">=1.0" },
     { name = "scipy", specifier = ">=1.13" },
-    { name = "tanga-py", extras = ["compile", "examples"], specifier = ">=1.1.0rc2", index = "https://test.pypi.org/simple/" },
+    { name = "tanga-py", extras = ["compile", "examples"], specifier = ">=1.9.0" },
 ]
 
 [package.metadata.requires-dev]
