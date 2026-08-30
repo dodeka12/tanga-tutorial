@@ -18,6 +18,7 @@ def on_config(config, **kwargs):
                 src,
                 dst,
                 ignore=shutil.ignore_patterns(
-                    ".ipynb_checkpoints", "__pycache__", "*.pyc", ".git"
+                    ".ipynb_checkpoints", "__pycache__", "*.pyc", ".git",
+                    "README.md",
                 ),
             )

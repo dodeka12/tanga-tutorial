@@ -147,6 +147,13 @@ The build copies `tutorials/` and `examples/` into `docs/` (via
 root-level sources. Notebooks are rendered **as saved** (`execute: false`), so no
 kernel or tanga compilation is needed to build the site.
 
+> **Live cells.** Cells that use `viz.show()`, `start_server()`, `viz.run()`, or
+> `viz.wait()` open a **live** viewer/server and can only run interactively in
+> Jupyter — their output is not shown in the static site. Because the build runs
+> with `execute: false`, these cells are never executed during `mkdocs build`, so
+> they can't hang or block the build. Readers run those cells live (e.g. via the
+> **Open in Colab** / **Launch Binder** buttons).
+
 ### Deploy to GitHub Pages
 
 Deployment is handled by the GitHub Actions workflows in `.github/workflows/`:
