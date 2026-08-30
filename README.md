@@ -122,74 +122,49 @@ Open a notebook (e.g. `tutorials/algebra/02_algebra_core/02_algebra_core.ipynb` 
 `tutorials/visualization/01_quick_tour/01_quick_tour.ipynb`) in your browser. The
 full tutorial-series plan lives in `dev/todos/`.
 
-## Documentation (Jupyter Book v2)
+## Documentation (MkDocs)
 
-The tutorials are also rendered as a book with **Jupyter Book v2** (powered by the
-MyST Document Engine — no Sphinx). Configuration lives in the root `myst.yml`.
+The tutorials are rendered as a site with **Material for MkDocs** +
+**mkdocs-jupyter**, versioned and published to GitHub Pages with **mike** (the
+same setup as the sibling [`tanga`](https://github.com/dodeka12/tanga) repo).
+Configuration lives in the root `mkdocs.yml`.
 
-### Preview the book locally
+### Preview locally
 
 ```bash
 uv sync --group dev
-uv run jupyter-book start       # serves http://localhost:3000 with live reload
+uv run mkdocs serve       # http://localhost:8000 with live reload
 ```
 
-The `start` command runs its own dev webserver; no separate static-site server is
-needed. To produce a static HTML build (e.g. for CI checks):
+To produce a static build (e.g. for a CI check):
 
 ```bash
-uv run jupyter-book build --html --strict
-cd _build/html 2>/dev/null || echo "see _build/ for build output"
+uv run mkdocs build --strict
 ```
 
-### Run notebook cells live (self-contained, local by default)
+The build copies `tutorials/` and `examples/` into `docs/` (via
+`docs/_hooks/copy_content.py`), so the notebook/script pages render from the
+root-level sources. Notebooks are rendered **as saved** (`execute: false`), so no
+kernel or tanga compilation is needed to build the site.
 
-Each notebook page exposes a power button for **in-page execution**. By default
-`myst.yml` is configured for a **local Jupyter server** so everything runs
-self-contained (no internet). The power button *connects to* an already-running
-server — it does not launch one — so start the Jupyter server **first** (in a
-separate terminal):
+### Deploy to GitHub Pages
 
-```bash
-# Terminal 1 — the book (all platforms)
-uv run jupyter-book start
-```
+Deployment is handled by the GitHub Actions workflows in `.github/workflows/`:
 
-**Linux / macOS** — Terminal 2 (kernel server):
+- `docs.yml` — on push to `main`, creates an RC tag and deploys via
+  `mike deploy` + `mike set-default`.
+- `docs-preview.yml` — manual (`workflow_dispatch`) branch preview under
+  `dev-<branch>/`.
+- `promote.yml` — manual promotion of the latest RC to a stable release
+  (`latest` alias).
 
-```bash
-uv run scripts/serve-local.sh
-```
+Pages is published to the `gh-pages` branch (source: **"Deploy from a branch"**,
+branch `gh-pages`, folder `/`). The published URL is
+`https://dodeka12.github.io/tanga-tutorial/`.
 
-**Windows (PowerShell)** — Terminal 2 (kernel server):
-
-```powershell
-uv run jupyter-lab --no-browser --ServerApp.port=8888 --IdentityProvider.token=tanga-local --ServerApp.allow_origin=http://localhost:3000
-# or, using the helper script:
-# & .\scripts\serve-local.ps1
-```
-
-The helper scripts use port `8888`, token `tanga-local`, and allow CORS from
-`http://localhost:3000` — matching `myst.yml` (`project.jupyter.server` and
-`project.jupyter.kernelName: python3`). Without step 2, pressing the power button
-will fail because there is no kernel server to connect to.
-
-### Deploy to GitHub Pages (Binder-backed, later)
-
-For the published site, in `myst.yml` uncomment `project.github` and the
-`jupyter: true` line, and comment out the `jupyter.server` block. Then:
-
-```bash
-uv run jupyter-book init --gh-pages   # generates .github/workflows/deploy.yml
-```
-
-Enable **GitHub Pages → Source: GitHub Actions** in the repository settings. Live
-execution then runs on Binder, which builds its environment from a root
-`requirements.txt` (not `pyproject.toml`/`uv.lock`), so add one when enabling this.
-
-> **Note:** in-page execution and the launch button are marked **beta** in Jupyter
-> Book v2. JupyterLite (in-browser WASM) is **not** supported here because `tanga-py`
-> ships compiled native extensions.
+Each notebook page has **Open in Colab** / **Launch Binder** buttons (from
+`docs/overrides/main.html`). Binder builds its environment from the root
+`requirements.txt`.
 
 ## Repository Structure
 
@@ -201,44 +176,13 @@ execution then runs on Binder, which builds its environment from a root
 ├── tutorials/           # Jupyter notebooks
 │   ├── algebra/             # Part II — Geometric Algebra
 │   └── visualization/       # Part I — Visualization
+├── docs/                # MkDocs site (index, overrides, hooks)
+├── mkdocs.yml           # MkDocs configuration
+├── .github/workflows/   # Docs deploy / preview / promote workflows
+├── tools/version-tag.sh # Conventional Commits → semver tag
 ├── dev/todos/           # Tutorial-series plans
 ├── .dep-docs/           # Upstream pytanga documentation
 ├── .dep-examples/       # Upstream pytanga examples
-├── myst.yml             # Jupyter Book v2 configuration
-├── index.md             # Book landing page
 ├── pyproject.toml       # Project metadata and dependencies
 └── README.md
-```
-
-## Installing tanga-py (TestPyPI → PyPI)
-
-The project currently installs `tanga-py` (`0.11.0rc1`) from the **TestPyPI** index
-via `[tool.uv.sources]`:
-
-```toml
-[project]
-dependencies = [
-    "tanga-py[compile,examples]==0.11.0rc1",
-]
-
-[tool.uv]
-prerelease = "allow"
-
-[tool.uv.sources]
-tanga-py = { index = "testpypi" }
-
-[[tool.uv.index]]
-name = "testpypi"
-url = "https://test.pypi.org/simple/"
-explicit = true
-```
-
-Once `tanga-py` is published on PyPI, switch to a PyPI release by updating the
-dependency and removing the `[tool.uv.sources]` entry:
-
-```toml
-[project]
-dependencies = [
-    "tanga-py[compile,examples]>=1.0.0",
-]
 ```

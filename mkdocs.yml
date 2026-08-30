@@ -1,0 +1,123 @@
+site_name: TanGA Tutorial
+site_url: https://dodeka12.github.io/tanga-tutorial/
+repo_url: https://github.com/dodeka12/tanga-tutorial
+repo_name: dodeka12/tanga-tutorial
+edit_uri: ""
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      execute: false
+      ignore_h1_titles: true
+      include_source: true
+      kernel_name: python3
+      include:
+        - "*.ipynb"
+        - "*.py"
+
+hooks:
+  - docs/_hooks/copy_content.py
+
+watch:
+  - tutorials
+  - examples
+
+extra:
+  version:
+    provider: mike
+
+docs_dir: docs
+
+nav:
+  - Home: index.md
+
+  - Tutorials:
+      - Visualization:
+          - 01 · Quick tour: tutorials/visualization/01_quick_tour/01_quick_tour.ipynb
+          - 02 · Use cases: tutorials/visualization/02_use_cases/02_use_cases.ipynb
+          - 03 · Jupyter notebooks: tutorials/visualization/03_jupyter/03_jupyter.ipynb
+          - 04 · Getting started: tutorials/visualization/04_getting_started/04_getting_started.ipynb
+          - 05 · SDF objects: tutorials/visualization/05_sdf_objects/05_sdf_objects.ipynb
+          - 06 · Multi-scene: tutorials/visualization/06_multi_scene/06_multi_scene.ipynb
+          - 07 · Scene graphs: tutorials/visualization/07_scene_graphs/07_scene_graphs.ipynb
+          - 08 · Styles & colors: tutorials/visualization/08_styles_colors/08_styles_colors.ipynb
+          - 09 · Axes, grid & camera: tutorials/visualization/09_axes_grid_camera/09_axes_grid_camera.ipynb
+          - 10 · Coordinate system: tutorials/visualization/10_coordinate_system/10_coordinate_system.ipynb
+          - 11 · Labels: tutorials/visualization/11_labels/11_labels.ipynb
+          - 12 · Interaction: tutorials/visualization/12_interaction/12_interaction.ipynb
+          - 13 · Animation: tutorials/visualization/13_animation/13_animation.ipynb
+          - 14 · Split views: tutorials/visualization/14_split_views/14_split_views.ipynb
+          - 15 · Visualizer app: tutorials/visualization/15_visualizer_app/15_visualizer_app.ipynb
+          - 16 · Controls: tutorials/visualization/16_controls/16_controls.ipynb
+          - 17 · Banners & dialogs: tutorials/visualization/17_banners_dialogs/17_banners_dialogs.ipynb
+          - 18 · Responsive computation: tutorials/visualization/18_responsive_computation/18_responsive_computation.ipynb
+          - 19 · Export: tutorials/visualization/19_export/19_export.ipynb
+          - 20 · GA entities: tutorials/visualization/20_ga_entities/20_ga_entities.ipynb
+          - 21 · SDF viewer: tutorials/visualization/21_sdf_viewer/21_sdf_viewer.ipynb
+      - Geometric Algebra:
+          - 01 · Quick tour: tutorials/algebra/01_quick_tour/01_quick_tour.ipynb
+          - 02 · Algebra & multivectors: tutorials/algebra/02_algebra_core/02_algebra_core.ipynb
+          - 03 · Basis classes: tutorials/algebra/03_basis_classes/03_basis_classes.ipynb
+          - 04 · Euclidean 3D: tutorials/algebra/04_euclidean_e3/04_euclidean_e3.ipynb
+          - 05 · Projective 3D: tutorials/algebra/05_projective_p3/05_projective_p3.ipynb
+          - 06 · Conformal 3D: tutorials/algebra/06_conformal_n3/06_conformal_n3.ipynb
+          - 07 · PGA 3D: tutorials/algebra/07_pga3/07_pga3.ipynb
+          - 08 · Duality: tutorials/algebra/08_duality/08_duality.ipynb
+          - 09 · Modulus arithmetic: tutorials/algebra/09_modulus/09_modulus.ipynb
+          - 10 · BladeMask: tutorials/algebra/10_blade_mask/10_blade_mask.ipynb
+          - 11 · Equation solving: tutorials/algebra/11_equation_solving/11_equation_solving.ipynb
+          - 12 · Matrix operations: tutorials/algebra/12_matrix/12_matrix.ipynb
+          - 13 · Tensor operations: tutorials/algebra/13_tensor/13_tensor.ipynb
+          - 14 · Expression system: tutorials/algebra/14_expression/14_expression.ipynb
+          - 15 · Geometry submodule: tutorials/algebra/15_geometry/15_geometry.ipynb
+          - 16 · Custom algebras: tutorials/algebra/16_custom_algebras/16_custom_algebras.ipynb
+          - 17 · Visualizing algebra entities: tutorials/algebra/17_visualizing_algebra_entities/17_visualizing_algebra_entities.ipynb
+
+  - Examples:
+      - Basic algebra: examples/basic_algebra.py
+      - PGA3 intro: examples/pga3_intro.py
+      - PGA3 visualizer: examples/pga3_visualizer.py
