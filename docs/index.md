@@ -3,7 +3,7 @@
 Tutorials for the [TanGA](https://github.com/dodeka12/tanga) geometric algebra
 library.
 
-This book walks through the **pytanga** Python package in two parts:
+This site walks through the **pytanga** Python package in two parts:
 
 - **Visualization** — teaches the `pytanga.viz` viewer from scratch, no
   geometric-algebra background required.
@@ -28,8 +28,16 @@ and expression).
 **Start with the
 [Algebra quick tour](tutorials/algebra/01_quick_tour/01_quick_tour.ipynb).**
 
-## Running the tutorials live
+## Examples
 
-Each notebook page has a power button at the top that connects to a local
-Jupyter server, letting you run the cells in place. See the
-[repository README](https://github.com/dodeka12/tanga-tutorial) for setup.
+Standalone scripts that show the library in action:
+
+- [Basic algebra](examples/basic_algebra.py)
+- [PGA3 intro](examples/pga3_intro.py)
+- [PGA3 visualizer](examples/pga3_visualizer.py)
+
+## Running the tutorials
+
+Each notebook page has **Open in Colab** and **Launch Binder** buttons at the
+top, so you can run the cells without installing anything locally. See the
+[repository README](https://github.com/dodeka12/tanga-tutorial) for local setup.

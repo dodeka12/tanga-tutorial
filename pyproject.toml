@@ -16,6 +16,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "jupyter-book>=2.0.0",
+    "mike>=2.0",
+    "mkdocs-material>=9.7.7",
+    "mkdocs-jupyter>=0.24",
+    "jupytext>=1.16",
 ]
 

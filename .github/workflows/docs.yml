@@ -1,0 +1,93 @@
+name: Docs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  version-bump:
+    name: Determine next RC version
+    if: github.event_name != 'workflow_dispatch' && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Determine next RC tag
+        id: tag
+        run: |
+          NEXT_TAG=$(bash ./tools/version-tag.sh --rc --dry-run | grep '^Next RC version:' | sed 's/Next RC version: \([^ ]*\).*/\1/')
+          echo "tag=$NEXT_TAG" >> $GITHUB_OUTPUT
+          echo "Next RC tag: $NEXT_TAG"
+
+  push-tag:
+    name: Push RC tag
+    needs: version-bump
+    if: needs.version-bump.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create and push tag
+        env:
+          TAG: ${{ needs.version-bump.outputs.tag }}
+        run: |
+          git tag -a "$TAG" -m "Release $TAG (auto)"
+          git push origin "$TAG"
+          echo "Pushed tag $TAG to origin."
+
+  docs-deploy:
+    name: Build & deploy versioned docs
+    needs: [push-tag, version-bump]
+    if: needs.push-tag.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install Python toolchain
+        run: uv sync --group dev
+
+      - name: Fetch pushed tag
+        run: git fetch origin tag ${{ needs.version-bump.outputs.tag }}
+
+      - name: Deploy docs with mike
+        env:
+          TAG: ${{ needs.version-bump.outputs.tag }}
+        run: uv run mike deploy --push "$TAG"
+
+      - name: Set default version
+        env:
+          TAG: ${{ needs.version-bump.outputs.tag }}
+        run: uv run mike set-default --push "$TAG"
