@@ -9,7 +9,7 @@ description = "Tutorials and examples for the TanGA geometric algebra library"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "tanga-py[compile,examples]>=1.9.0",
+    "tanga-py[compile,examples]>=1.11.0",
     # pre-release version
     # "tanga-py[compile,examples]==0.11.0rc1",
     "jupyter>=1.0",
