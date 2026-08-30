@@ -10,11 +10,11 @@ permissions:
 
 jobs:
   version-bump:
-    name: Determine next RC version
-    if: github.event_name != 'workflow_dispatch' && github.actor != 'github-actions[bot]'
+    name: Determine next version
+    if: github.event_name == 'push' && github.actor != 'github-actions[bot]'
     runs-on: ubuntu-24.04
     outputs:
-      tag: ${{ steps.tag.outputs.tag }}
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,15 +22,15 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
 
-      - name: Determine next RC tag
-        id: tag
+      - name: Determine next version
+        id: version
         run: |
-          NEXT_TAG=$(bash ./tools/version-tag.sh --rc --dry-run | grep '^Next RC version:' | sed 's/Next RC version: \([^ ]*\).*/\1/')
-          echo "tag=$NEXT_TAG" >> $GITHUB_OUTPUT
-          echo "Next RC tag: $NEXT_TAG"
+          NEXT_VERSION=$(bash ./tools/version-tag.sh --dry-run | grep '^Next version:' | sed 's/Next version: \([^ ]*\).*/\1/')
+          echo "version=$NEXT_VERSION" >> $GITHUB_OUTPUT
+          echo "Next version: $NEXT_VERSION"
 
   push-tag:
-    name: Push RC tag
+    name: Push version tag
     needs: version-bump
     if: needs.version-bump.result == 'success'
     runs-on: ubuntu-24.04
@@ -48,16 +48,18 @@ jobs:
 
       - name: Create and push tag
         env:
-          TAG: ${{ needs.version-bump.outputs.tag }}
+          VERSION: ${{ needs.version-bump.outputs.version }}
         run: |
-          git tag -a "$TAG" -m "Release $TAG (auto)"
-          git push origin "$TAG"
-          echo "Pushed tag $TAG to origin."
+          git tag -a "$VERSION" -m "Release $VERSION"
+          git push origin "$VERSION"
+          echo "Pushed tag $VERSION to origin."
 
   docs-deploy:
-    name: Build & deploy versioned docs
-    needs: [push-tag, version-bump]
-    if: needs.push-tag.result == 'success'
+    name: Build & deploy docs
+    needs: [version-bump, push-tag]
+    if: |
+      (github.event_name == 'push' && needs.push-tag.result == 'success') ||
+      github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -79,15 +81,25 @@ jobs:
       - name: Install Python toolchain
         run: uv sync --group dev
 
-      - name: Fetch pushed tag
-        run: git fetch origin tag ${{ needs.version-bump.outputs.tag }}
+      - name: Resolve version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            VERSION="${{ needs.version-bump.outputs.version }}"
+            git fetch origin tag "$VERSION"
+          else
+            VERSION=$(git tag -l 'v*' --sort=-v:refname | grep -v '\-rc' | head -1)
+            VERSION=${VERSION:-latest}
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Deploying version: $VERSION"
 
       - name: Deploy docs with mike
         env:
-          TAG: ${{ needs.version-bump.outputs.tag }}
-        run: uv run mike deploy --push "$TAG"
+          VERSION: ${{ steps.version.outputs.version }}
+        run: uv run mike deploy --push --update-aliases "$VERSION" latest
 
       - name: Set default version
         env:
-          TAG: ${{ needs.version-bump.outputs.tag }}
-        run: uv run mike set-default --push "$TAG"
+          VERSION: ${{ steps.version.outputs.version }}
+        run: uv run mike set-default --push "$VERSION"

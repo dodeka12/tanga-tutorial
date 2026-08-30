@@ -1,6 +1,10 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
 [project]
 name = "tanga-tutorial"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Tutorials and examples for the TanGA geometric algebra library"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -13,6 +17,12 @@ dependencies = [
     "ipython>=8.30",
     "scipy>=1.13",
 ]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tanga_tutorial"]
 
 [dependency-groups]
 dev = [

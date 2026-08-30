@@ -151,16 +151,24 @@ kernel or tanga compilation is needed to build the site.
 
 Deployment is handled by the GitHub Actions workflows in `.github/workflows/`:
 
-- `docs.yml` — on push to `main`, creates an RC tag and deploys via
-  `mike deploy` + `mike set-default`.
+- `docs.yml` — on push to `main`, bumps the version (Conventional Commits →
+  semver via `tools/version-tag.sh`), tags it, and deploys the docs for that
+  version via `mike deploy` + `mike set-default` (updating the `latest` alias).
+  Manual `workflow_dispatch` re-deploys the current version without bumping.
 - `docs-preview.yml` — manual (`workflow_dispatch`) branch preview under
   `dev-<branch>/`.
-- `promote.yml` — manual promotion of the latest RC to a stable release
-  (`latest` alias).
 
-Pages is published to the `gh-pages` branch (source: **"Deploy from a branch"**,
-branch `gh-pages`, folder `/`). The published URL is
+The package version is dynamic (hatch-vcs derives it from the latest git tag).
+Docs versions are managed by **mike** (git tags → versioned subdirectories on
+`gh-pages`).
+
+Set **GitHub Pages → Source** to **"Deploy from a branch"**, branch **`gh-pages`**,
+folder **`/ (root)`**. `mike` pushes the built site to that branch (with a
+`.nojekyll` file so Jekyll is bypassed). The published URL is
 `https://dodeka12.github.io/tanga-tutorial/`.
+
+> **First deploy:** push to `main` (or run `docs.yml` manually once) — this
+> creates the `gh-pages` branch — then point Pages at it.
 
 Each notebook page has **Open in Colab** / **Launch Binder** buttons (from
 `docs/overrides/main.html`). Binder builds its environment from the root
@@ -178,8 +186,9 @@ Each notebook page has **Open in Colab** / **Launch Binder** buttons (from
 │   └── visualization/       # Part I — Visualization
 ├── docs/                # MkDocs site (index, overrides, hooks)
 ├── mkdocs.yml           # MkDocs configuration
-├── .github/workflows/   # Docs deploy / preview / promote workflows
-├── tools/version-tag.sh # Conventional Commits → semver tag
+├── .github/workflows/   # Docs deploy / preview workflows
+├── tools/version-tag.sh # Conventional Commits → semver version bump
+├── tanga_tutorial/      # Metadata-only package (hatch-vcs dynamic version)
 ├── dev/todos/           # Tutorial-series plans
 ├── .dep-docs/           # Upstream pytanga documentation
 ├── .dep-examples/       # Upstream pytanga examples
