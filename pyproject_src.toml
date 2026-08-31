@@ -6,16 +6,15 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "tanga-py[compile,examples]>=1.11.0",
-    # pre-release version
-    # "tanga-py[compile,examples]==0.11.0rc1",
     "jupyter>=1.0",
     "ipykernel>=6.29",
     "ipython>=8.30",
     "scipy>=1.13",
 ]
 
-[dependency-groups]
-dev = [
-    "jupyter-book>=2.0.0",
-]
+# [tool.uv]
+# prerelease = "allow"
+
+[tool.uv.sources]
+tanga-py = { path = "../tanga", editable = true }
 
