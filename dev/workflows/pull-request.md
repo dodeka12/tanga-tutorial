@@ -4,7 +4,7 @@ How to open a pull request for a feature/fix branch.
 
 ## Overview
 
-1. Run the full test suite — it must pass.
+1. Build all docs — no errors.
 2. Rename the branch changelog to its final hash-based name.
 3. Write the PR summary to a temp file.
 4. Push the branch and create the PR with the `gh` CLI.
@@ -17,15 +17,17 @@ How to open a pull request for a feature/fix branch.
 
 ## Steps
 
-### 1. Run the full test suite
+### 1. Build all docs
 
-Run the full pytest suite and require it to succeed before doing anything else:
+Build the full documentation site and require it to succeed before doing
+anything else:
 
 ```powershell
-uv run pytest
+uv run mkdocs build --strict
 ```
 
-If any test fails, fix it and re-run. Do **not** open the PR with failing tests.
+If the build reports any error or warning, fix it and re-run. Do **not** open
+the PR with a failing docs build.
 
 ### 2. Rename the changelog (branch name → last commit hash)
 

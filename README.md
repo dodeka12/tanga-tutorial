@@ -1,6 +1,6 @@
 # tanga-tutorial
 
-Tutorials and examples for the [TanGA](https://github.com/dodeka12/tanga) geometric algebra library.
+Tutorials for the [TanGA](https://github.com/dodeka12/tanga) geometric algebra library.
 
 ## Prerequisites
 
@@ -85,18 +85,12 @@ This installs:
 > configuration not covered by the precompiled set (~5–20 s); subsequent uses load the
 > cached binary (~ms).
 
-## Running Examples
-
-```bash
-# Run a single example script
-uv run python examples/basic_algebra.py
-uv run python examples/pga3_intro.py
-uv run python examples/pga3_visualizer.py
-
-# Or activate the venv and run directly
-source .venv/bin/activate
-python examples/basic_algebra.py
-```
+> **Switching the tanga-py source.** The `tanga-py` dependency (PyPI release /
+> TestPyPI release candidate / editable `../tanga` checkout) lives in
+> `pyproject.toml` as tagged blocks. Switch it with
+> `uv run python tools/switch_tanga.py release|rc|src` (check the active mode with
+> `--show`). The default is `release`; edit the version constraint inside the
+> active block if you need a specific version.
 
 ## Running Tutorials
 
@@ -142,10 +136,17 @@ To produce a static build (e.g. for a CI check):
 uv run mkdocs build --strict
 ```
 
-The build copies `tutorials/` and `examples/` into `docs/` (via
-`docs/_hooks/copy_content.py`), so the notebook/script pages render from the
+The build copies `tutorials/` into `docs/` (via
+`docs/_hooks/copy_content.py`), so the notebook pages render from the
 root-level sources. Notebooks are rendered **as saved** (`execute: false`), so no
 kernel or tanga compilation is needed to build the site.
+
+> **Live cells.** Cells that use `viz.show()`, `start_server()`, `viz.run()`, or
+> `viz.wait()` open a **live** viewer/server and can only run interactively in
+> Jupyter — their output is not shown in the static site. Because the build runs
+> with `execute: false`, these cells are never executed during `mkdocs build`, so
+> they can't hang or block the build. Readers run those cells live (e.g. via the
+> **Open in Colab** / **Launch Binder** buttons).
 
 ### Deploy to GitHub Pages
 
@@ -177,10 +178,6 @@ Each notebook page has **Open in Colab** / **Launch Binder** buttons (from
 ## Repository Structure
 
 ```
-├── examples/            # Standalone Python scripts
-│   ├── basic_algebra.py     # E3 Euclidean algebra basics
-│   ├── pga3_intro.py        # PGA3 projective geometry intro
-│   └── pga3_visualizer.py   # PGA3 viewer demo
 ├── tutorials/           # Jupyter notebooks
 │   ├── algebra/             # Part II — Geometric Algebra
 │   └── visualization/       # Part I — Visualization
