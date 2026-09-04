@@ -2,7 +2,8 @@
 
 How to bring the tutorials up to date with a new `tanga-py` (pytanga) release:
 refresh the vendored docs/examples, read the changelogs since the last update,
-and write a plan describing what must change.
+write a plan describing what must change, and author this repo's changelog for
+the update.
 
 ## Steps
 
@@ -40,7 +41,17 @@ and write a plan describing what must change.
    picks it up automatically at build time. Do **not** edit the landing page or any
    notebook by hand.
 
-7. **Validate**:
+7. **Create the changelog** — author this repo's branch changelog at
+   `docs/changelog/YYYY-MM-DD_<branch-name>.md` (create the directory if this is
+   the first changelog), following `dev/workflows/changelog.md`. Headline the
+   entry as the tutorial update to the new pytanga version, and fill the sections
+   that apply — e.g. `New Features` for newly documented APIs, `Breaking Changes`
+   for chapters rewritten to match removed/changed APIs, `Bug Fixes` for wrong
+   docs or examples corrected, `Refactor` for renumbering/reorganization. The
+   changelog is finalized (renamed to its hash form + indexed) at PR time — see
+   `dev/workflows/pull-request.md`.
+
+8. **Validate**:
 
    ```bash
    uv run mkdocs build --strict
