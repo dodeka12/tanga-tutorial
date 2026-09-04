@@ -1,11 +1,11 @@
-"""Copy the root tutorials/ and examples/ into docs/ before the build."""
+"""Copy the root tutorials/ into docs/ before the build."""
 
 import shutil
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]   # docs/_hooks -> docs -> root
 DOCS_DIR = REPO_ROOT / "docs"
-_CONTENT = ("tutorials", "examples")
+_CONTENT = ("tutorials",)
 
 
 def on_config(config, **kwargs):
