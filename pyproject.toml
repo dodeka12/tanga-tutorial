@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     # tanga:start:release
-    "tanga-py[compile,examples]>=1.17.0",
+    "tanga-py[compile,examples]>=2.3.0",
     # tanga:end:release
     # tanga:start:rc
     # "tanga-py[compile,examples]>=1.18.0rc1",

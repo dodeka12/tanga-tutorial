@@ -1,5 +1,11 @@
 # Changelog
 
+## [Since 0.2.1] — 2026-09-12
+
+- pytanga 2.3.0 tutorial update · new Tables (`TableView`) chapter · declarative control views (`*View` + `set_layout`) · Expression `bind()`/`evaluate()`
+- Breaking: controls chapters rewritten for the removed `add_*` facades · removed the `SdfVisualizer` tutorial
+→ [Details](2026-09-12_28fb1be.md)
+
 ## [Since 0.2.0] — 2026-09-04
 
 - Visualization quick tour framing fix · SDF & scene-graph demos · expression tutorial math rendering

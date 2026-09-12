@@ -31,16 +31,16 @@ Visualization inputs are drawn from `pytanga.geometry` dataclasses (`Point`,
 | 14 | [Split Views](14_split_views/) | `SplitView`/`SceneView`/`GroupView` layouts |
 | 15 | [Interactive Apps](15_visualizer_app/) | The `VisualizerApp` lifecycle |
 | 16 | [Controls](16_controls/) | Every control type and `open_editor()` |
-| 17 | [Banners & Dialogs](17_banners_dialogs/) | `alert()`/`confirm()`/`show_banner()` |
-| 18 | [Responsive Computation](18_responsive_computation/) | `flush_async()`, `submit_user()` |
-| 19 | [Export](19_export/) | HTML, figures, glTF/GLB, screenshots, video |
-| 20 | [GA Entities](20_ga_entities/) | Visualizing multivectors and operators |
-| 21 | [SDF Viewer](21_sdf_viewer/) | The experimental `SdfVisualizer` |
+| 17 | [Tables](17_tables/) | The `TableView` editable data grid |
+| 18 | [Banners & Dialogs](18_banners_dialogs/) | `alert()`/`confirm()`/`show_banner()` |
+| 19 | [Responsive Computation](19_responsive_computation/) | `flush_async()`, `submit_user()` |
+| 20 | [Export](20_export/) | HTML, figures, glTF/GLB, screenshots, video |
+| 21 | [GA Entities](21_ga_entities/) | Visualizing multivectors and operators |
 
 ## Prerequisites
 
 - **Part II — Geometric Algebra** (`../algebra/`) is *not* required to
-  follow this part; the GA-entities bridge (tutorial 20) is the only place that
+  follow this part; the GA-entities bridge (tutorial 21) is the only place that
   touches multivectors, and it defers the theory to Part II.
 - Python 3.10+ with `pytanga` and `aiohttp` installed. Three.js, KaTeX, and
   `marked` load from a CDN in the browser — no frontend build step.

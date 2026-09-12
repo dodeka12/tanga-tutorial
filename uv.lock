@@ -2418,21 +2418,22 @@ wheels = [
 
 [[package]]
 name = "tanga-py"
-version = "1.17.0"
+version = "2.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
     { name = "numpy" },
+    { name = "psutil" },
     { name = "rich" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4f/df/6b88d1bb6ce4869005420f5a3c5fb92b3d981d2f938ddad3c02a1bcdfc4e/tanga_py-1.17.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:51097b0121352c45e1e8a356049a03f78fdc351d10429674d6918bdd661d7899", size = 2772256, upload-time = "2026-09-03T06:14:41.639Z" },
-    { url = "https://files.pythonhosted.org/packages/ec/72/2a0d3043985d5611b7529b7d5aeb3de6e08c883a3cbf8b5aab286832a5b4/tanga_py-1.17.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:32ea10f3b13f88057ddd39284e50033de76ccb589781e6b4c5522ef5cc283b72", size = 3098858, upload-time = "2026-09-03T06:14:43.204Z" },
-    { url = "https://files.pythonhosted.org/packages/df/fb/ac58fe191581924f858450f22751c89f144abdba701f7b9459d87d85b20f/tanga_py-1.17.0-cp312-cp312-win_amd64.whl", hash = "sha256:72d813e49310ced25d721914d186011ed7ee48c614a5fe4781ae7a624e1ce0d6", size = 2817466, upload-time = "2026-09-03T06:14:44.44Z" },
-    { url = "https://files.pythonhosted.org/packages/50/e2/1c0086c68032d0e2083ca5734fe1b16c1b817af077364e81b80773f4844a/tanga_py-1.17.0-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:73c32800dfd4e9e8bbb53bf65ada5a4a0ad357027969d6d1152b2785af5d3577", size = 2772483, upload-time = "2026-09-03T06:14:45.806Z" },
-    { url = "https://files.pythonhosted.org/packages/d5/58/db7af835eb373cae9e9c0731fe521b239ed930c757f511da896e677d2d67/tanga_py-1.17.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:e432280e3cfe6dcaffd6ecea3b5b86bc93ab637a11c5b268796d21aa8f9e8e7b", size = 3099046, upload-time = "2026-09-03T06:14:47.053Z" },
-    { url = "https://files.pythonhosted.org/packages/db/2b/370e05d2a3d42dc38ef1352d228609e4f43efd1d45a47ea22bbadb35c13c/tanga_py-1.17.0-cp313-cp313-win_amd64.whl", hash = "sha256:99868e9c6f73550b2bba6e12ba9a4dce345a898bac8b654e00eea12f15f16484", size = 2817805, upload-time = "2026-09-03T06:14:48.269Z" },
-    { url = "https://files.pythonhosted.org/packages/ce/cf/d70f75d54e964385cf4293096b080bafd975a0b3af160e27db5c0af46a9d/tanga_py-1.17.0-py3-none-any.whl", hash = "sha256:6efaa752bba295422103398f7a4637ccbb2a223009e90fcadb95474c62fc3ca5", size = 1501090, upload-time = "2026-09-03T06:14:49.311Z" },
+    { url = "https://files.pythonhosted.org/packages/9d/ec/7c5e79555d26d6a28969f86077f15e18db83ba9ec9baef6aac5152244151/tanga_py-2.3.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:231769b8599596a733a18f5ba69b3d0ebede6b60ae26dff745b2f69caf053aec", size = 2991557, upload-time = "2026-09-12T05:14:56.811Z" },
+    { url = "https://files.pythonhosted.org/packages/c2/74/80984c6a749c0330f3a403fc95254ea385cecb8f250b100d54c6cbbfbe7e/tanga_py-2.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:bc5de1652052de78cbf072092275e4b953869e0d8e5d097c2c0ed0b402b6c2c0", size = 3322361, upload-time = "2026-09-12T05:14:58.725Z" },
+    { url = "https://files.pythonhosted.org/packages/f4/30/b3917ed2422f7fc3316bc41a4a5ef6933ab46e9ee6e433964b66e2702ce5/tanga_py-2.3.0-cp312-cp312-win_amd64.whl", hash = "sha256:535767d2eca791d6fd95765719e277568846ea1ae8d76e388dd0199c08174ce2", size = 3032514, upload-time = "2026-09-12T05:15:00.962Z" },
+    { url = "https://files.pythonhosted.org/packages/31/b0/92936f9b4038d37639c88d0b2518681db24c74902eedcd6ee19096ea1edb/tanga_py-2.3.0-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:edf45b4be1b0bce35d78f70f58bd5270aab2bd0ba5b194dcab1e4f6097e1d122", size = 2991885, upload-time = "2026-09-12T05:15:02.55Z" },
+    { url = "https://files.pythonhosted.org/packages/61/eb/51d72c916f3de0f75a98d74db647c97676e73ceff82303244eb4368a4343/tanga_py-2.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:4ba6eab547911006a299182f99814ac8b0760c5e8c825b197cb31132097dd9a9", size = 3322778, upload-time = "2026-09-12T05:15:04.17Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/b9/ca8413889a0c3102651d64bba227cde371879158d2f6e293ae5959a334ce/tanga_py-2.3.0-cp313-cp313-win_amd64.whl", hash = "sha256:c6b90c1c88959d8317b7c88b199af529f9ee6580d2a95adb50da3946763951b3", size = 3032874, upload-time = "2026-09-12T05:15:05.591Z" },
+    { url = "https://files.pythonhosted.org/packages/37/ad/fe899465278a4c67cee052a22b6a9b84a7c2a3ca7775f93b926857fcf78c/tanga_py-2.3.0-py3-none-any.whl", hash = "sha256:8aaabb402d8b67fc90e6f0f3ed238d36c7d9e4937ece25b0675903dddf4d3ced", size = 1710758, upload-time = "2026-09-12T05:15:07.116Z" },
 ]
 
 [package.optional-dependencies]
@@ -2473,7 +2474,7 @@ requires-dist = [
     { name = "ipython", specifier = ">=8.30" },
     { name = "jupyter", specifier = ">=1.0" },
     { name = "scipy", specifier = ">=1.13" },
-    { name = "tanga-py", extras = ["compile", "examples"], specifier = ">=1.17.0" },
+    { name = "tanga-py", extras = ["compile", "examples"], specifier = ">=2.3.0" },
 ]
 
 [package.metadata.requires-dev]
