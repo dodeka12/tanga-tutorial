@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block htmltitle %}
+<title>
+    {% if page.title and not page.is_homepage %}
+    {{ page.title }} -
+    {% endif %}
+    {{ config.site_name }}
+</title>
+{% endblock %}
+
+{% block content %}
+    {% if page.file.src_path.endswith(".ipynb") %}
+    <div class="launch-buttons" style="margin: 0 0 1rem 0;">
+        <a class="md-button md-button--primary" href="https://colab.research.google.com/github/dodeka12/tanga-tutorial/blob/main/{{ page.file.src_path }}" target="_blank">Open in Colab</a>
+        <a class="md-button" href="https://mybinder.org/v2/gh/dodeka12/tanga-tutorial/HEAD?filepath={{ page.file.src_path }}" target="_blank">Launch Binder</a>
+    </div>
+    {% endif %}
+    {{ super() }}
+{% endblock %}
