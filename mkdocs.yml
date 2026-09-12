@@ -70,7 +70,7 @@ watch:
 extra:
   version:
     provider: mike
-  tanga_version: "1.17.0"
+  tanga_version: "2.3.0"
 
 docs_dir: docs
 
@@ -94,11 +94,11 @@ nav:
       - 14 · Split views: tutorials/visualization/14_split_views/14_split_views.ipynb
       - 15 · Visualizer app: tutorials/visualization/15_visualizer_app/15_visualizer_app.ipynb
       - 16 · Controls: tutorials/visualization/16_controls/16_controls.ipynb
-      - 17 · Banners & dialogs: tutorials/visualization/17_banners_dialogs/17_banners_dialogs.ipynb
-      - 18 · Responsive computation: tutorials/visualization/18_responsive_computation/18_responsive_computation.ipynb
-      - 19 · Export: tutorials/visualization/19_export/19_export.ipynb
-      - 20 · GA entities: tutorials/visualization/20_ga_entities/20_ga_entities.ipynb
-      - 21 · SDF viewer: tutorials/visualization/21_sdf_viewer/21_sdf_viewer.ipynb
+      - 17 · Tables: tutorials/visualization/17_tables/17_tables.ipynb
+      - 18 · Banners & dialogs: tutorials/visualization/18_banners_dialogs/18_banners_dialogs.ipynb
+      - 19 · Responsive computation: tutorials/visualization/19_responsive_computation/19_responsive_computation.ipynb
+      - 20 · Export: tutorials/visualization/20_export/20_export.ipynb
+      - 21 · GA entities: tutorials/visualization/21_ga_entities/21_ga_entities.ipynb
   - Geometric Algebra:
       - 01 · Quick tour: tutorials/algebra/01_quick_tour/01_quick_tour.ipynb
       - 02 · Algebra & multivectors: tutorials/algebra/02_algebra_core/02_algebra_core.ipynb
